@@ -17,7 +17,8 @@ class CreateBlogPostsTable extends Migration {
 	        $table->string('title')->unique();
 	        $table->string('intro', 100);
 	        $table->text('text');
-	        $table->string('picture');
+	        $table->string('picture')->nullable();
+	        $table->string('name_url');
 	        $table->integer('user_id')->unsigned();
 	        $table->foreign('user_id')->references('id')->on('users');
 	        $table->timestamps();
