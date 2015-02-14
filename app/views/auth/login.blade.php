@@ -6,7 +6,7 @@
 			@if(isset($message))
 				<div class="message">{{ $message }}</div>
 			@endif
-	    	{{ Form::open(array('url' => 'auth/login')) }}
+	    	{{ Form::open(array('url' => 'login')) }}
 		    	{{ Form::label('email', 'Email'); }}
 		    	{{ Form::text('email'); }}
 		    	{{ Form::label('password', 'Password'); }}

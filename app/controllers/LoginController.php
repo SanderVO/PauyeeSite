@@ -33,7 +33,7 @@ class LoginController extends BaseController {
 	            // check
 	            if($result) {
 	            	// user logged in
-	            	return View::make('home');
+	            	return Redirect::route('home');
 	            } else {
 	            	return View::make('auth.login')->with(array('message' => 'Something went wrong...'));
 	            }

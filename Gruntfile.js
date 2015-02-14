@@ -37,12 +37,20 @@ module.exports = function(grunt) {
 		
 		// minify images
 		imagemin: {
-			dist: {
+			pub: {
 				files: [{
 					expand: true,
 					cwd: 'components/img/',
 					src: ['**/*.{png,jpg,gif}'],
 					dest: 'public/assets/images/'
+				}],
+			},
+			blog: {
+				files: [{
+					expand: true,
+					cwd: 'components/img/blog/',
+					src: ['**/*.{png,jpg,gif}'],
+					dest: 'public/assets/images/blog/'
 				}]
 			}
 		},
@@ -65,7 +73,14 @@ module.exports = function(grunt) {
 			},
 			img: {
 				files: ['components/img/*.jpg', 'components/img/*.png'],
-				tasks: ['imagemin'],
+				tasks: ['imagemin:pub'],
+				options: {
+					spawn: false
+				}
+			},
+			"img-blog": {
+				files: ['components/img/blog/*.jpg', 'components/img/blog/*.png'],
+				tasks: ['imagemin:blog'],
 				options: {
 					spawn: false
 				}
