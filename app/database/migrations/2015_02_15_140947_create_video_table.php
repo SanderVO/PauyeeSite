@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePageMediaTable extends Migration {
+class CreateVideoTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,11 @@ class CreatePageMediaTable extends Migration {
 	 */
 	public function up()
 	{
-	    Schema::create('page_media', function($table) {
+	    Schema::create('videos', function($table) {
 	        $table->increments('id');
+	        $table->string('title');
+	        $table->string('description');
 	        $table->string('url');
-	        $table->string('element');
-	        $table->string('type');
-	        $table->string('description')->nullable();
 	        $table->timestamps();
 	    });
 	}
@@ -29,7 +28,7 @@ class CreatePageMediaTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('page_media');
+		Schema::drop('videos');
 	}
 
 }

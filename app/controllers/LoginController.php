@@ -62,9 +62,9 @@ class LoginController extends BaseController {
 	            // check
 	            if($result) {
 	            	// user logged in
-	            	return View::make('home');
+	            	return Redirect::route('home');
 	            } else {
-	            	return View::make('auth.login')->with(array('message' => 'Something went wrong...'));
+	            	return Redirect::route('login')->with(array('message' => 'Something went wrong...'));
 	            }
 	        } else {
 	        	return View::make('auth.create')->with(array('errors' => $user->errors()));

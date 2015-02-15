@@ -2,14 +2,14 @@
 
 use LaravelBook\Ardent\Ardent;
 
-class Page extends Ardent {
+class Client extends Ardent {
 
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $table = 'pages';
+	protected $table = 'clients';
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -25,6 +25,7 @@ class Page extends Ardent {
 	*/
 	protected $fillable = array(
 		'name',
+		'description'
 	);
 
 	/**
@@ -34,15 +35,7 @@ class Page extends Ardent {
 	 */
 	public static $rules = array(
 		'name' => 'required',
+		'description' => 'required'
 	);
-
-	/**
-	 * Texts relationship
-	 *
-	 */
-	public function texts()
-	{
-	  return $this->hasMany('PageText', 'pages_id');
-	}
 
 }

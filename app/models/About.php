@@ -2,14 +2,14 @@
 
 use LaravelBook\Ardent\Ardent;
 
-class PageMedia extends Ardent {
+class About extends Ardent {
 
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $table = 'page_media';
+	protected $table = 'about';
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -24,10 +24,7 @@ class PageMedia extends Ardent {
 	* @var array
 	*/
 	protected $fillable = array(
-		'url',
-		'type',
-		'element',
-		'pages_id'
+		'text'
 	);
 
 	/**
@@ -36,19 +33,8 @@ class PageMedia extends Ardent {
 	 * @var array
 	 */
 	public static $rules = array(
-		'url' => 'required',
-		'type' => 'required',
-		'element' => 'required',
-		'pages_id' => 'required'
+		'text' => 'required',
+		'picture' => 'required'
 	);
-
-	/**
-	 * Page relationship
-	 *
-	 */
-	public function text()
-	{
-	  return $this->belongsTo('Page', 'pages_id');
-	}
 
 }

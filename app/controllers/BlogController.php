@@ -12,7 +12,7 @@ class BlogController extends BaseController {
 	*/
 	public function index() {
 		// get all blogs orderred by date
-		$blogs = BlogPost::orderBy('created_at', 'DESC')->with('reactions')->get();
+		$blogs = BlogPost::orderBy('created_at', 'DESC')->with('reactions', 'user')->get();
 		// return
 		return View::make('blog.index')->with('posts', $blogs);
 	}
@@ -32,9 +32,8 @@ class BlogController extends BaseController {
 			if(Input::hasFile('picture') && Input::file('picture')->isValid()) {
 				$file = Input::file('picture');
 				$filename = str_random(10) . "." . $file->getClientOriginalExtension();
-				$file->move("../components/img/blog", $filename);
+				$file->move("assets/images/blog", $filename);
 				$blog->picture = $filename;
-
 			} else {
 				$blog->picture = null;
 			}
@@ -76,7 +75,7 @@ class BlogController extends BaseController {
 			if(Input::hasFile('picture') && Input::file('picture')->isValid()) {
 				$file = Input::file('picture');
 				$filename = str_random(10) . "." . $file->getClientOriginalExtension();
-				$file->move("../components/img/blog", $filename);
+				$file->move("assets/images/blog", $filename);
 				$blog->picture = $file->getRealPath();
 			}
 			// save
@@ -112,7 +111,7 @@ class BlogController extends BaseController {
 		// get blog post
 		if($blog->destroy($id)) {
 			// delete picture
-			unlink("/assets/images/blog/" . $picture);
+			unlink("assets/images/blog/" . $picture);
 			// return index
 			$blogs = BlogPost::orderBy('created_at', 'DESC')->with('reactions')->get();
 			return Redirect::route('blog')->with('posts', $blogs);

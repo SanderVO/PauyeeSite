@@ -27,24 +27,6 @@ body {
 
 }
 
-.home {
-	height: 100vh;
-	color: white;
-}
-.home::after {
-  content: "";
-  background: url("../images/fitness.jpg");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  opacity: 0.4;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;  
-}
-
 .toolbar {
 	background: $primary-color;
 }

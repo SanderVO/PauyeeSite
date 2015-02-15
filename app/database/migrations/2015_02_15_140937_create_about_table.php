@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePageTextsTable extends Migration {
+class CreateAboutTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,10 @@ class CreatePageTextsTable extends Migration {
 	 */
 	public function up()
 	{
-	    Schema::create('page_texts', function($table) {
+	    Schema::create('about', function($table) {
 	        $table->increments('id');
-	        $table->string('element');
-	        $table->text('text');
-	        $table->integer('pages_id')->unsigned();
-	        $table->foreign('pages_id')->references('id')->on('pages');
+	        $table->string('text');
+	        $table->text('picture');
 	        $table->timestamps();
 	    });
 	}
@@ -29,7 +27,7 @@ class CreatePageTextsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('page_texts');
+		Schema::drop('about');
 	}
 
 }
