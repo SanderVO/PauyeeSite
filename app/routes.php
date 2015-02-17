@@ -41,8 +41,8 @@ Route::group(array('prefix' => 'blog'), function() {
 */
 Route::group(array('prefix' => 'about'), function() {
 	Route::any('/', array('as' => 'about', 'uses' => 'AboutController@index'));
-	Route::match(array('GET', 'POST'), '/create', array('as' => 'about.create', 'uses' => 'AboutController@create'));
-	Route::match(array('GET', 'PUT'), '/edit/{id}', array('as' => 'about.edit', 'uses' => 'AboutController@edit'));
+	Route::match(array('GET', 'POST'), '/create', array('before' => 'auth', 'as' => 'about.create', 'uses' => 'AboutController@create'));
+	Route::match(array('GET', 'PUT'), '/edit/{id}', array('before' => 'auth', 'as' => 'about.edit', 'uses' => 'AboutController@edit'));
 });
 
 /*
@@ -50,9 +50,9 @@ Route::group(array('prefix' => 'about'), function() {
 */
 Route::group(array('prefix' => 'clients'), function() {
 	Route::any('/', array('as' => 'client', 'uses' => 'ClientController@index'));
-	Route::match(array('GET', 'POST'), '/create', array('as' => 'client.create', 'uses' => 'ClientController@create'));
-	Route::match(array('GET', 'PUT'), '/edit/{id}', array('as' => 'client.edit', 'uses' => 'ClientController@edit'));
-	Route::delete('/delete/{id}', array('as' => 'client.delete', 'uses' => 'ClientController@delete'));
+	Route::match(array('GET', 'POST'), '/create', array('before' => 'auth', 'as' => 'client.create', 'uses' => 'ClientController@create'));
+	Route::match(array('GET', 'PUT'), '/edit/{id}', array('before' => 'auth', 'as' => 'client.edit', 'uses' => 'ClientController@edit'));
+	Route::delete('/delete/{id}', array('before' => 'auth', 'as' => 'client.delete', 'uses' => 'ClientController@delete'));
 });
 
 /*
@@ -60,7 +60,17 @@ Route::group(array('prefix' => 'clients'), function() {
 */
 Route::group(array('prefix' => 'videos'), function() {
 	Route::any('/', array('as' => 'video', 'uses' => 'VideoController@index'));
-	Route::match(array('GET', 'POST'), '/create', array('as' => 'video.create', 'uses' => 'VideoController@create'));
-	Route::match(array('GET', 'PUT'), '/edit/{id}', array('as' => 'video.edit', 'uses' => 'VideoController@edit'));
-	Route::delete('/delete/{id}', array('as' => 'video.delete', 'uses' => 'VideoController@delete'));
+	Route::match(array('GET', 'POST'), '/create', array('before' => 'auth', 'as' => 'video.create', 'uses' => 'VideoController@create'));
+	Route::match(array('GET', 'PUT'), '/edit/{id}', array('before' => 'auth', 'as' => 'video.edit', 'uses' => 'VideoController@edit'));
+	Route::delete('/delete/{id}', array('before' => 'auth', 'as' => 'video.delete', 'uses' => 'VideoController@delete'));
+});
+
+/*
+* Slider
+*/
+Route::group(array('prefix' => 'sliders'), function() {
+	Route::any('/', array('as' => 'slider', 'uses' => 'SliderController@index'));
+	Route::match(array('GET', 'POST'), '/create', array('before' => 'auth', 'as' => 'slider.create', 'uses' => 'SliderController@create'));
+	Route::match(array('GET', 'PUT'), '/edit/{id}', array('before' => 'auth', 'as' => 'slider.edit', 'uses' => 'SliderController@edit'));
+	Route::delete('/delete/{id}', array('before' => 'auth', 'as' => 'slider.delete', 'uses' => 'SliderController@delete'));
 });

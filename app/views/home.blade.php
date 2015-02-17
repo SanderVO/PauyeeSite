@@ -2,8 +2,16 @@
 
 @section('content')
 	<div class="home">
-		<div class="container">
-	    	<p>This is my body content.</p>
-	    </div>
+		<div id="home-slider">
+			<ul class="slideme">
+				@foreach($pictures as $picture)
+					<li>
+						<div class="slider-title"><h1>{{ $picture->title }}</h1></div>
+						<div class="slider-description">{{ $picture->description }}</div>
+						<img src="assets/images/slider/{{ $picture->picture }}">
+					</li>
+				@endforeach
+			</ul>
+		</div>
 	</div>
 @stop

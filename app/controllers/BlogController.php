@@ -47,6 +47,7 @@ class BlogController extends BaseController {
 				return View::make('blog.create')->with(array(
 					'errors' => $blog->errors(), 
 					'blog' => $blog,
+					'url' => 'blog/create',
 					'method' => 'post'
 				));
 			}
@@ -87,6 +88,7 @@ class BlogController extends BaseController {
 			} else {
 				return View::make('blog.create')->with(array(
 					'errors' => $blog->errors(),
+					'blog' => $blog,
 					'url' => 'blog/edit/'.$id,
 					'method' => 'put'
 				));
