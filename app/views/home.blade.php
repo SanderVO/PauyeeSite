@@ -13,5 +13,8 @@
 				@endforeach
 			</ul>
 		</div>
+		<div>
+			test
+		</div>
 	</div>
 @stop

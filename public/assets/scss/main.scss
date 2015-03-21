@@ -1,4 +1,5 @@
 $font-stack: Helvetica, sans-serif;
+$small-size: 1em;
 $normal-size: 2em;
 $primary-color: #333;
 
@@ -7,6 +8,7 @@ body {
   font-size: $normal-size;
   color: $primary-color;
   background-color: white;
+  overflow: hidden;
 }
 
 .left {
@@ -20,9 +22,46 @@ body {
 	
 	background-color: white;
 	color: black;
+	border: none;
+	border-bottom: 1px solid grey;
 	margin-bottom: 0px !important;
+	position: fixed;
+	z-index: 99999;
+	width: 100%;
 	
 	ul {
+		list-style-type: none;
+		margin-bottom: 0px !important;
+
+		li {
+			text-align: center;
+			border-right: 1px solid grey;
+			border-left: 1px solid grey;
+			padding-bottom: 15px;
+			padding-top: 15px;
+		}
+
+	}
+
+	div {
+
+		a {
+			padding-bottom: 15px;
+			padding-top: 15px;
+		}
+
+	}
+
+	a {
+		color: black;
+		margin-bottom: 50px;
+	}
+
+	.left, .right {
+		height: 100%;
+	}
+
+	.left {
 		margin-top: 15px;
 	}
 
@@ -64,6 +103,7 @@ body {
 	.slider-description {
 		color: white;
 		position: absolute;
-		left: 50px;
+		left: 100px;
+		text-shadow: 2px 2px black;
 	}
 }

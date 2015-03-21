@@ -3,23 +3,55 @@ body {
   font-size: 2em;
   color: #333333;
   background-color: white;
+  padding-top: 70px;
+  font-size: 15px;
+}
+.body {
+  min-height: 75vh;
+}
+
+.navbar-bottom {
+  z-index: 9999;
+  bottom: 190px;  
+}
+.footer {
+  margin-bottom: 0px;
+  margin-top: 20px;
 }
 
 .left {
   float: left;
 }
-
 .right {
   float: right;
 }
-
-.navbar {
-  background-color: black;
-  color: white;
-  margin-bottom: 0px !important;
+.center {
+  text-align: center;
 }
-.navbar ul {
-  margin-top: 15px;
+.rounded-pic {
+  width: 200px;
+  border-radius: 100px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  height: 200px;
+}
+.normal-font {
+  font-size: 15px;
+}
+
+.about {
+}
+.about-image {
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.client-buttons {
+  text-align: center;
+  padding-bottom: 10px;
+}
+.clients .client form {
+  padding-right: 5px;
 }
 
 .toolbar {
@@ -34,6 +66,9 @@ body {
   width: 100%;
 }
 
+#home-slider {
+  margin-top: -20px;
+}
 #home-slider .arrow.next {
   position: absolute;
   right: 0;
@@ -56,5 +91,8 @@ body {
 #home-slider .slider-description {
   color: white;
   position: absolute;
-  left: 50px;
+  left: 100px;
+  text-shadow: 2px 2px black;
 }
+
+/*# sourceMappingURL=main.css.map */

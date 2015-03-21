@@ -18,6 +18,23 @@ class ClientController extends BaseController {
 	}
 
 	/*
+	* Show single client
+	*/
+	public function show($slug) {
+		// get id
+		$id = explode("-", $slug)[1];
+		// get all blogs orderred by date
+		$client = Client::where('id', '=', $id)->with('reactions')->get()->first();
+		// make empty reaction
+		$reaction = new Reaction;
+		// return
+		return View::make('client.show')->with(array(
+			'client' => $client,
+			'reaction' => $reaction
+		));
+	}
+
+	/*
 	* Add a client
 	*/
 	public function create() {
@@ -36,6 +53,10 @@ class ClientController extends BaseController {
 			}
 			// save
 			if($client->save()) {
+				// make url
+				$client->name_url = strtolower($client->name) . "-" . $client->id;
+				// save and redirect
+				$client->save();
 				return Redirect::route('client')->with(array('message' => 'Success!'));
 			} else {
 				if(isset($client->picture))
@@ -75,6 +96,8 @@ class ClientController extends BaseController {
 				$file->move("assets/img/client", $filename);
 				$client->picture = $filename;
 			}
+			// make url
+			$client->name_url = strtolower($client->name) . "-" . $client->id;
 			// save
 			if($client->save()) {
 				return Redirect::route('client')->with(array('message' => 'Success!'));

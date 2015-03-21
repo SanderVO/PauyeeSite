@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
 	$('#home-slider').slideme({
 		arrows: true,
 		touch : true,
@@ -12,4 +13,13 @@ $(document).ready(function() {
 			height: 450,
 		}
 	});
+
+	// CKEDITOR
+	if($('#about-editor').html() != undefined)
+		CKEDITOR.replace('about-editor');
+	if($('#client-desc-editor').html() != undefined)
+		CKEDITOR.replace('client-desc-editor');
+	if($('#client-text-editor').html() != undefined)
+		CKEDITOR.replace('client-text-editor');
+
 });

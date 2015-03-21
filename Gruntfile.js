@@ -27,10 +27,11 @@ module.exports = function(grunt) {
 		sass: {                
 			dist: {                    
 			  options: {                     
-			    style: 'expanded'
+			    style: 'expanded',
+			    sourcemap: true,
 			  },
 			  files: {                  
-			    'public/assets/css/main.css': 'components/css/main.scss'
+			    'public/assets/css/main.css': 'public/assets/scss/main.scss'
 			  }
 			}
 		},
@@ -58,7 +59,7 @@ module.exports = function(grunt) {
 		// watcher
 		watch: {
 			css: {
-				files: ['components/css/*.scss'],
+				files: ['public/assets/scss/*.scss'],
 				tasks: ['sass', 'cssmin'],
 				options: {
 					spawn: false

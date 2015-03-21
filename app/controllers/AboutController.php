@@ -71,8 +71,8 @@ class AboutController extends BaseController {
 				$file = Input::file('picture');
 				$filename = str_random(10) . "." . $file->getClientOriginalExtension();
 				unlink($about->picture);
-				$file->move("assets/img/about", $filename);
-				$about->picture = $filename;
+				$file->move("assets/images/about", $filename);
+				$about->picture = "assets/images/about/" . $filename;
 			}
 			// save
 			if($about->save()) {

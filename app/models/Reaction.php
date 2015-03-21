@@ -2,14 +2,14 @@
 
 use LaravelBook\Ardent\Ardent;
 
-class BlogReaction extends Ardent {
+class Reaction extends Ardent {
 
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $table = 'blog_reactions';
+	protected $table = 'reactions';
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -25,7 +25,10 @@ class BlogReaction extends Ardent {
 	*/
 	protected $fillable = array(
 		'name',
-		'text'
+		'text',
+		'object',
+		'object_id',
+		'ip'
 	);
 
 	/**
@@ -35,7 +38,10 @@ class BlogReaction extends Ardent {
 	 */
 	public static $rules = array(
 		'name' => 'required',
-		'text' => 'required|min:10'
+		'text' => 'required|min:10',
+		'object' => 'required',
+		'object_id' => 'required',
+		'ip' => 'required'
 	);
 
 	/**
@@ -44,7 +50,7 @@ class BlogReaction extends Ardent {
 	 */
 	public function blog()
 	{
-	  return $this->belongsTo('BlogPost', 'blog_posts_id');
+	  return $this->belongsTo('BlogPost', 'object_id')->where('object', '=', 'blog');
 	}
 
 }

@@ -25,7 +25,9 @@ class Client extends Ardent {
 	*/
 	protected $fillable = array(
 		'name',
-		'description'
+		'name_url',
+		'description',
+		'text'
 	);
 
 	/**
@@ -35,7 +37,18 @@ class Client extends Ardent {
 	 */
 	public static $rules = array(
 		'name' => 'required',
-		'description' => 'required'
+		'description' => 'required',
+		'name_url' => 'required',
+		'text' => 'required'
 	);
+
+	/**
+	 * Reactions relationship
+	 *
+	 */
+	public function reactions()
+	{
+	  return $this->hasMany('Reaction', 'object_id')->where('object', '=', 'client');
+	}
 
 }
