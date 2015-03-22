@@ -6,15 +6,9 @@
 			<!-- Buttons -->
 			@if(isset(Auth::user()->id))
 				<div class="blog-buttons">
-					<a href="blog/create">Create Blog</a>
+					<a class="btn btn-primary" href="blog/create">Add Post</a>
 				</div>
 			@endif
-			<!-- No posts -->
-	    	@if(empty($posts))
-		    	<div class="noposts">
-		    		<p>No posts found.</p>
-		    	</div>
-		    @endif
 	    	<!-- All blog posts -->
 	    	@if(!empty($posts))
 	    		<div class="blog-posts">

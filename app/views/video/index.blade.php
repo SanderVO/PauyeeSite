@@ -6,15 +6,9 @@
 			<!-- Buttons -->
 			@if(isset(Auth::user()->id))
 				<div class="video-buttons">
-					<a href="videos/create">Add video</a>
+					<a class="btn btn-primary" href="videos/create">Add Video</a>
 				</div>
 			@endif
-			<!-- No videos -->
-	    	@if(empty($videos))
-		    	<div class="noposts">
-		    		<p>No videos found.</p>
-		    	</div>
-		    @endif
 	    	<!-- All video posts -->
 	    	@if(!empty($videos))
 	    		<div class="videos">

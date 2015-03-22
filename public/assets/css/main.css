@@ -1,5 +1,10 @@
+@font-face {
+    font-family: droid;
+    src: url("../fonts/DroidSerif.ttf");
+}
+
 body {
-  font: 100% Helvetica, sans-serif;
+  font-family: droid;
   font-size: 2em;
   color: #333333;
   background-color: white;
@@ -7,7 +12,12 @@ body {
   font-size: 15px;
 }
 .body {
-  min-height: 75vh;
+    min-height: 83vh;
+}
+
+.navbar a.active {
+  color: black;
+  font-weight: bold;
 }
 
 .navbar-bottom {
@@ -17,6 +27,9 @@ body {
 .footer {
   margin-bottom: 0px;
   margin-top: 20px;
+  bottom: 0px;
+  width: 100%;
+  /* position: absolute; */
 }
 
 .left {
@@ -31,9 +44,10 @@ body {
 .rounded-pic {
   width: 200px;
   border-radius: 100px;
-  padding-bottom: 20px;
-  padding-top: 20px;
+  /* padding-bottom: 20px; */
+  /* padding-top: 20px; */
   height: 200px;
+  box-shadow: 0px 3px 15px #888888;
 }
 .normal-font {
   font-size: 15px;

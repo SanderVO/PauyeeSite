@@ -22,4 +22,13 @@ $(document).ready(function() {
 	if($('#client-text-editor').html() != undefined)
 		CKEDITOR.replace('client-text-editor');
 
+	// Link Active
+    var url = window.location;
+    $('.navbar a').find('.active').removeClass('active');
+    $('.navbar a').each(function () {
+        if (this.href == url) {
+            $(this).addClass('active');
+        }
+    }); 
+
 });

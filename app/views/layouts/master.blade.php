@@ -49,6 +49,11 @@
         @section('footer')
 		<nav class="navbar footer navbar-default">
 		  <div class="container">
+		  	@if(!Auth::user()->id)
+		  		<p class="navbar-text navbar-left"><a href="login" class="navbar-link">Login</a></p>
+		  	@else
+				<p class="navbar-text navbar-left"><a href="logout" class="navbar-link">Logout</a></p>
+			@endif
 		    <p class="navbar-text navbar-right">Made by Sander</p>
 		  </div>
 		</nav>
