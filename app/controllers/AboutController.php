@@ -57,7 +57,7 @@ class AboutController extends BaseController {
 	}
 
 	/*
-	* Edit a blog post
+	* Edit about page
 	*/
 	public function edit($id) {
 		// get input
@@ -76,13 +76,25 @@ class AboutController extends BaseController {
 			}
 			// save
 			if($about->save()) {
-				return Redirect::route('about')->with(array('message' => 'Success!'));
+				if(Input::get('type') == 'JSON') {
+					$response = Response::json(array('message' => 'Success!'));
+					$response->header('status-code', 200);
+					return $response;
+				} else {
+					return Redirect::route('about')->with(array('message' => 'Success!'));
+				}
 			} else {
-				return View::make('about.create')->with(array(
-					'errors' => $about->errors(),
-					'url' => 'about/edit/'.$id,
-					'method' => 'put'
-				));
+				if(Input::get('type') == 'JSON') {
+					$response = Response::json(array('message' => 'Fail!', 'errors' => $about->errors()));
+					$response->header('status-code', 406);
+					return $response;
+				} else {
+					return View::make('about.create')->with(array(
+						'errors' => $about->errors(),
+						'url' => 'about/edit/'.$id,
+						'method' => 'put'
+					));
+				}
 			}
 		} else {
 			// return edit page

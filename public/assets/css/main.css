@@ -53,14 +53,21 @@ body {
   font-size: 15px;
 }
 
+/* About */
 .about {
 }
 .about-image {
   text-align: center;
   padding-bottom: 20px;
 }
+#cancel-about-text,
+#save-about-text,
+#about-text-editor {
+  display: none;
+}
 
-.client-buttons {
+.client-buttons,
+.slider-buttons {
   text-align: center;
   padding-bottom: 10px;
 }

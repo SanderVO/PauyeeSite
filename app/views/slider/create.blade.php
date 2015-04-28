@@ -7,19 +7,28 @@
 				<div class="message">{{ $message }}</div>
 			@endif
 	    	{{ Form::model($slider, array('url' => $url, 'class' => 'left', 'files' => true, 'method' => $method)) }}
-		    	{{ Form::label('title', 'Title'); }}
-		    	{{ Form::text('title'); }}
-		    	@if(isset($errors)) {{ $errors->first('title'); }} @endif
-		    	{{ Form::label('description', 'Description'); }}
-		    	{{ Form::textarea('description'); }}
-		    	@if(isset($errors)) {{ $errors->first('description'); }} @endif
-		    	{{ Form::label('picture', 'Picture'); }}
-		    	{{ Form::file('picture'); }}
-		    	@if(isset($errors)) {{ $errors->first('picture'); }} @endif
-		    	{{ Form::label('position', 'Position'); }}
-		    	{{ Form::text('position'); }}
-		    	@if(isset($errors)) {{ $errors->first('position'); }} @endif
-		    	{{ Form::submit('Save'); }}
+	    		<div class="form-group">
+			    	{{ Form::label('title', 'Title'); }}
+			    	{{ Form::text('title', $slider->title, array('class' => 'form-control')); }}
+			    	@if(isset($errors)) {{ $errors->first('title'); }} @endif
+			    </div>
+			    <div class="form-group">
+			    	{{ Form::label('description', 'Description'); }}
+			    	{{ Form::textarea('description', $slider->description, array('class' => 'form-control', 'id' => 'edit-slider-description')); }}
+			    	@if(isset($errors)) {{ $errors->first('description'); }} @endif
+			    </div>
+			    <div class="form-group">
+			    	{{ Form::label('picture', 'Picture'); }}
+			    	<div class="slider-picture"><img class="rounded-pic" src="{{ $slider->picture }}" /></div>
+			    	{{ Form::file('picture'); }}
+			    	@if(isset($errors)) {{ $errors->first('picture'); }} @endif
+			    </div>
+			    <div class="form-group">
+			    	{{ Form::label('position', 'Position'); }}
+			    	{{ Form::text('position'); }}
+			    	@if(isset($errors)) {{ $errors->first('position'); }} @endif
+			    </div>
+		    	{{ Form::submit('Save', array('class' => 'btn btn-default')); }}
 	    	{{ Form::close() }}
 	    </div>
 	</div>

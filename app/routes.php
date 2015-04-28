@@ -12,6 +12,21 @@
 */
 
 /*
+* API
+*/
+Route::group(array('prefix' => 'api'), function() {
+
+	/*
+	* About
+	*/
+	Route::group(array('prefix' => 'about'), function() {
+		Route::match(array('GET', 'POST'), '/create', array('before' => 'auth', 'as' => 'about.create', 'uses' => 'AboutController@create'));
+		Route::match(array('GET', 'PUT'), '/edit/{id}', array('before' => 'auth', 'as' => 'about.edit', 'uses' => 'AboutController@edit'));
+	});
+
+});
+
+/*
 * Home
 */
 Route::any('/', array('as' => 'home', 'uses' => 'HomeController@index'));

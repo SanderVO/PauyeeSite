@@ -63,6 +63,8 @@ class SliderController extends BaseController {
 		$slider = SliderPicture::find($id);
 		// check if post
 		if(Request::isMethod('put')) {
+			// save old position
+			$oldpos = $slider->position;
 			// get input
 			$slider->fill(Input::all());
 			// get file
@@ -71,6 +73,14 @@ class SliderController extends BaseController {
 				$filename = str_random(10) . "." . $file->getClientOriginalExtension();
 				$file->move("assets/images/slider", $filename);
 				$slider->picture = $file->getRealPath();
+			}
+			// check positions
+			if($oldpos != $slider->position) {
+				// switch positions
+				$oldslider = SliderPicture::where('position', '=', $slider->position)->get()->first();
+				$oldslider->position = $oldpos;
+				if($slider->validate())
+					$oldslider->save();
 			}
 			// save
 			if($slider->save()) {

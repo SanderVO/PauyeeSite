@@ -40,6 +40,11 @@
         		<p class="navbar-text navbar-right"><a href="blog" class="navbar-link">Blog</a></p>
         		<p class="navbar-text navbar-right"><a href="clients" class="navbar-link">Clients</a></p>
         		<p class="navbar-text navbar-right"><a href="about" class="navbar-link">About Me</a></p>
+
+				@if(isset(Auth::user()->id))
+					<p class="navbar-text navbar-right"><a href="sliders" class="navbar-link">Sliders</a></p>
+				@endif
+
 	        </div>
 	    </nav>
         @show
@@ -49,7 +54,7 @@
         @section('footer')
 		<nav class="navbar footer navbar-default">
 		  <div class="container">
-		  	@if(!Auth::user()->id)
+		  	@if(!isset(Auth::user()->id))
 		  		<p class="navbar-text navbar-left"><a href="login" class="navbar-link">Login</a></p>
 		  	@else
 				<p class="navbar-text navbar-left"><a href="logout" class="navbar-link">Logout</a></p>
