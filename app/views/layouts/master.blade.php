@@ -35,6 +35,7 @@
         		<p class="navbar-text navbar-left"><a href="https://instagram.com/pauyeefitness/"><i class="fa fa-instagram"></i></a></p>
         		<p class="navbar-text navbar-left"><a href="https://www.youtube.com/channel/UC4v7Xq5W45aAlnX8RaQRZ1g"><i class="fa fa-youtube-play"></i></a></p>
 
+				<p class="navbar-text navbar-right"><a href="contact" class="navbar-link">Contact</a></p>
         		<p class="navbar-text navbar-right"><a href="apparel" class="navbar-link">Apparel</a></p>
         		<p class="navbar-text navbar-right"><a href="videos" class="navbar-link">Videos</a></p>
         		<p class="navbar-text navbar-right"><a href="blog" class="navbar-link">Blog</a></p>

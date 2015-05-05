@@ -18,8 +18,15 @@ class HomeController extends BaseController {
 	public function index() {
 		// get slider pictures
 		$pics = SliderPicture::orderBy('position', 'ASC')->get();
+		// get instagram pictures
+		$insta = $this->getInstagramMedia();
+		$youtube = $this->getYoutubeMedia(4);
 		// return
-		return View::make('home')->with('pictures', $pics);
+		return View::make('home.home')->with(array(
+			'pictures' => $pics,
+			'instadata' => $insta,
+			'youtubedata' => $youtube
+		));
 	}
 
 }

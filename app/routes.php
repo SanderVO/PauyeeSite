@@ -91,6 +91,14 @@ Route::group(array('prefix' => 'reactions'), function() {
 });
 
 /*
+* Contact
+*/
+Route::group(array('prefix' => 'contact'), function() {
+	Route::any('/', array('as' => 'contact', 'uses' => 'ContactController@index'));
+	Route::post('send', array('as' => 'contact.create', 'uses' => 'ContactController@send'));
+});
+
+/*
 * Slider
 */
 Route::group(array('prefix' => 'sliders'), function() {

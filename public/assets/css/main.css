@@ -115,5 +115,21 @@ body {
   left: 100px;
   text-shadow: 2px 2px black;
 }
+.home-instagram,
+.home-youtube {
+  text-align: center;
+}
+.home-instagram-pic,
+.home-youtube-video {
+  float: left;
+}
+
+.message {
+  font-weight: bold;
+}
+.contact .message {
+  margin: 20px 0px;
+  font-weight: 300;
+}
 
 /*# sourceMappingURL=main.css.map */
