@@ -15,6 +15,7 @@ class CreateClientTable extends Migration {
 	    Schema::create('clients', function($table) {
 	        $table->increments('id');
 	        $table->string('name');
+	        $table->string('name_url');
 	        $table->string('description');
 	        $table->text('picture');
 	        $table->timestamps();

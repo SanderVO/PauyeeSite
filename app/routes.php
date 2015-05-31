@@ -24,6 +24,13 @@ Route::group(array('prefix' => 'api'), function() {
 		Route::match(array('GET', 'PUT'), '/edit/{id}', array('before' => 'auth', 'as' => 'about.edit', 'uses' => 'AboutController@edit'));
 	});
 
+	/*
+	* Blocks
+	*/
+	Route::group(array('prefix' => 'blocks'), function() {
+		Route::get('/{type}/{block_type}', array('before' => 'auth', 'as' => 'about.create', 'uses' => 'BlockController@newBlock'));
+	});
+
 });
 
 /*
@@ -69,6 +76,7 @@ Route::group(array('prefix' => 'clients'), function() {
 	Route::match(array('GET', 'PUT'), '/edit/{id}', array('before' => 'auth', 'as' => 'client.edit', 'uses' => 'ClientController@edit'));
 	Route::delete('/delete/{id}', array('before' => 'auth', 'as' => 'client.delete', 'uses' => 'ClientController@delete'));
 	Route::any('/{slug}', array('as' => 'client.show', 'uses' => 'ClientController@show'));
+	Route::get('/search/{term}', array('as' => 'client.search', 'uses' => 'ClientController@search'));
 });
 
 /*

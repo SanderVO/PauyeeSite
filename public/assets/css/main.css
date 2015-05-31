@@ -115,12 +115,10 @@ body {
   left: 100px;
   text-shadow: 2px 2px black;
 }
-.home-instagram,
-.home-youtube {
+.home-instagram {
   text-align: center;
 }
-.home-instagram-pic,
-.home-youtube-video {
+.home-instagram-pic {
   float: left;
 }
 
@@ -130,6 +128,27 @@ body {
 .contact .message {
   margin: 20px 0px;
   font-weight: 300;
+}
+
+/**
+* Videos
+**/
+.home-youtube-video {
+  text-align: center;
+}
+
+/**
+* Clients
+**/
+.clients-page div:first-child {
+  margin-bottom: 20px;  
+}
+.clients-page .input-group input,
+.clients-page .input-group-btn .btn {
+  height: 70px;
+}
+.clients-page .input-group input {
+  font-size: 15pt;
 }
 
 /*# sourceMappingURL=main.css.map */

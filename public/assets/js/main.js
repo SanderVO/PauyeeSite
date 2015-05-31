@@ -79,3 +79,23 @@ $(document).ready(function() {
     });
 
 });
+
+/**
+* Clients Page
+*/
+function searchClients() {
+    // get
+    var value = $("#search-client-text").val();
+    // request
+    $.ajax({
+        url: '/clients/search/' + value,
+        type: 'GET',
+        dataType: 'json'
+    })
+    .done(function(data) {
+        console.log(data);
+    })
+    .fail(function() {
+        console.log("error");
+    });      
+}

@@ -13,8 +13,12 @@ class VideoController extends BaseController {
 	public function index() {
 		// get all blogs orderred by date
 		$videos = Video::orderBy('created_at', 'DESC')->get();
+		$youtube = $this->getYoutubeMedia(4);
 		// return
-		return View::make('video.index')->with('videos', $videos);
+		return View::make('video.index')->with([
+			'videos' => $videos,
+			'youtubedata' => $youtube
+		]);
 	}
 
 	/*

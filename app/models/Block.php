@@ -2,14 +2,14 @@
 
 use LaravelBook\Ardent\Ardent;
 
-class Client extends Ardent {
+class Block extends Ardent {
 
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $table = 'clients';
+	protected $table = 'blocks';
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -24,10 +24,11 @@ class Client extends Ardent {
 	* @var array
 	*/
 	protected $fillable = array(
-		'name',
-		'name_url',
-		'description',
-		'text'
+		'block_type',
+		'text',
+		'picture_pos',
+		'object_id',
+		'object_type'
 	);
 
 	/**
@@ -36,17 +37,12 @@ class Client extends Ardent {
 	 * @var array
 	 */
 	public static $rules = array(
-		'name' => 'required',
-		'description' => 'required'
+		'block_type' => 'required',
+		'text' => 'required',
+		'object_id' => 'required',
+		'object_type' => 'required',
+		'picture' => 'required_with:picture_pos',
+		'picture_pos' => 'required_with:picture'
 	);
-
-	/**
-	 * Reactions relationship
-	 *
-	 */
-	public function reactions()
-	{
-	  return $this->hasMany('Reaction', 'object_id')->where('object', '=', 'client');
-	}
 
 }

@@ -40,10 +40,29 @@ class ClientController extends BaseController {
 	public function create() {
 		// new about
 		$client = new Client;
+		$blocks = [];
 		// check if post
 		if(Request::isMethod('post')) {
 			// get input
 			$client = new Client(Input::all());
+			// loop through blocks
+			foreach(Input::get('block') as $key => $block) {
+				$blocks[$key] = new Block;
+				$blocks[$key]->text = $block["'text'"];
+				$blocks[$key]->block_type = $block["'type'"];
+				$blocks[$key]->object_type = 'client';
+				// check if picture
+				if($blocks[$key]->block_type == 'picture') {
+					$blocks[$key]->picture_pos = $block["'picture_pos'"];
+					// get file
+					if(Input::hasFile("block_picture_" . $key) && Input::file("block_picture_" . $key)->isValid()) {
+						$file = Input::file("block_picture_" . $key);
+						$filename = str_random(10) . "." . $file->getClientOriginalExtension();
+						$file->move("assets/images/blocks/client", $filename);
+						$blocks[$key]->picture = $filename;
+					}
+				}
+			}
 			// get file
 			if(Input::hasFile('picture') && Input::file('picture')->isValid()) {
 				$file = Input::file('picture');
@@ -56,14 +75,28 @@ class ClientController extends BaseController {
 				// make url
 				$client->name_url = strtolower($client->name) . "-" . $client->id;
 				// save and redirect
-				$client->save();
+				if($client->save()) {
+					// save blocks
+					foreach($blocks as $block) {
+						$block->object_id = $client->id;
+						$block->save();
+					}
+				}
+				// redirect
 				return Redirect::route('client')->with(array('message' => 'Success!'));
 			} else {
+				return $client->errors();
 				if(isset($client->picture))
 					unlink("assets/images/client/" . $filename);
+				foreach($blocks as $key => $block) {
+					if(isset($block->picture))
+						unlink("assets/images/blocks/client/" . $block->picture);
+				}
+				// return
 				return View::make('client.create')->with(array(
 					'errors' => $client->errors(), 
 					'client' => $client,
+					'blocks' => $blocks,
 					'url' => 'clients/create',
 					'method' => 'post'
 				));
@@ -71,7 +104,8 @@ class ClientController extends BaseController {
 		} else {
 			// return edit page
 			return View::make('client.create')->with(array(
-				'client' => $client, 
+				'client' => $client,
+				'blocks' => $blocks, 
 				'url' => 'clients/create',
 				'method' => 'post'
 			));
@@ -135,6 +169,22 @@ class ClientController extends BaseController {
 		} else {
 			return Redirect::route('client')->with(array('message' => 'Something went wrong..'));
 		}
+	}
+
+	/*
+	* Search for a client name
+	*/
+	public function search($term) {
+		// sanitize
+	    $term = mysql_real_escape_string($term);
+	    $term = htmlentities($term);
+		// get clients
+		$clients = Client::where('name', 'LIKE', '%'.$term.'%')->get();
+		// return
+		if(sizeof($clients) > 0)
+			return Response::json($clients)->header('status', 200);
+		else
+			return Response::json(['msg' => 'Geen klanten gevonden met deze naam.'])->headers('status', 404);
 	}
 
 }

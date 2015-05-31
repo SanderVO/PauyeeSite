@@ -72,7 +72,7 @@ class SliderController extends BaseController {
 				$file = Input::file('picture');
 				$filename = str_random(10) . "." . $file->getClientOriginalExtension();
 				$file->move("assets/images/slider", $filename);
-				$slider->picture = $file->getRealPath();
+				$slider->picture = $filename;
 			}
 			// check positions
 			if($oldpos != $slider->position) {

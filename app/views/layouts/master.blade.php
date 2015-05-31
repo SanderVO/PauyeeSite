@@ -27,25 +27,28 @@
 
     <body>
         @section('sidebar')
-        <nav class="navbar navbar-default navbar-fixed-top">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         	<div class="container">
-        		<p class="navbar-text navbar-left"><a href="/" class="navbar-link">PYFitness</a></p>
-        		<p class="navbar-text navbar-left"><a href="https://twitter.com/pauyeeee"><i class="fa fa-twitter"></i></a></p>
-        		<p class="navbar-text navbar-left"><a href="https://www.facebook.com/pauyee.lim"><i class="fa fa-facebook"></i></a></p>
-        		<p class="navbar-text navbar-left"><a href="https://instagram.com/pauyeefitness/"><i class="fa fa-instagram"></i></a></p>
-        		<p class="navbar-text navbar-left"><a href="https://www.youtube.com/channel/UC4v7Xq5W45aAlnX8RaQRZ1g"><i class="fa fa-youtube-play"></i></a></p>
-
-				<p class="navbar-text navbar-right"><a href="contact" class="navbar-link">Contact</a></p>
-        		<p class="navbar-text navbar-right"><a href="apparel" class="navbar-link">Apparel</a></p>
-        		<p class="navbar-text navbar-right"><a href="videos" class="navbar-link">Videos</a></p>
-        		<p class="navbar-text navbar-right"><a href="blog" class="navbar-link">Blog</a></p>
-        		<p class="navbar-text navbar-right"><a href="clients" class="navbar-link">Clients</a></p>
-        		<p class="navbar-text navbar-right"><a href="about" class="navbar-link">About Me</a></p>
-
-				@if(isset(Auth::user()->id))
-					<p class="navbar-text navbar-right"><a href="sliders" class="navbar-link">Sliders</a></p>
-				@endif
-
+	        	<div class="navbar-header">
+	        		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	        			<span class="icon-bar"></span>
+	        			<span class="icon-bar"></span>
+	        			<span class="icon-bar"></span>
+	        		</button>
+	        		<a href="#" class="navbar-brand">PYFitness</a>
+	        	</div>
+	        	<div class="navbar-collapse collapse">
+	        		<ul class="nav navbar-nav navbar-right">
+	        			<li><a href="about" class="navbar-link">About Me</a></li>
+	        			<li><a href="clients" class="navbar-link">Clients</a></li>
+	        			<li><a href="blog" class="navbar-link">Blog</a></li>
+	        			<li><a href="videos" class="navbar-link">Videos</a></li>
+						@if(isset(Auth::user()->id))
+							<li><a href="sliders" class="navbar-link">Sliders</a></li>
+						@endif
+	        			<li><a href="contact" class="navbar-link">Contact</a></li>
+	        		</ul>
+				</div>
 	        </div>
 	    </nav>
         @show

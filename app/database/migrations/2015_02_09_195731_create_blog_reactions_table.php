@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBlogReactionsTable extends Migration {
+class CreateReactionsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,14 @@ class CreateBlogReactionsTable extends Migration {
 	 */
 	public function up()
 	{
-	    Schema::create('blog_reactions', function($table) {
+	    Schema::create('reactions', function($table) {
 	        $table->increments('id');
 	        $table->string('text');
-	        $table->string('name')->nullable();
-	        $table->integer('blog_posts_id')->unsigned()->nullable();
-	        $table->foreign('blog_posts_id')->references('id')->on('blog_posts');
+	        $table->string('name');
+	        $table->string('object');
+	        $table->integer('object_id');
+	        $table->string('ip');
+
 	        $table->timestamps();
 	    });
 	}

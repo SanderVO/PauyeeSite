@@ -22,16 +22,6 @@
 					</div>
 				@endforeach
 			</div>
-			<div class="home-youtube left">
-				<h2>Youtube</h2>
-				@foreach($youtubedata['items'] as $data)
-					<div class="home-youtube-video">
-						@if(isset($data['id']['videoId']))
-							<iframe width="560" height="315" src="https://www.youtube.com/embed/{{ $data['id']['videoId'] }}" frameborder="0" allowfullscreen></iframe>
-						@endif
-					</div>
-				@endforeach
-			</div>
 		</div>
 	</div>
 @stop
