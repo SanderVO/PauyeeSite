@@ -24,7 +24,7 @@ class ClientController extends BaseController {
 		// get id
 		$id = explode("-", $slug)[1];
 		// get all blogs orderred by date
-		$client = Client::where('id', '=', $id)->with('reactions')->get()->first();
+		$client = Client::where('id', '=', $id)->with('reactions', 'blocks')->get()->first();
 		// make empty reaction
 		$reaction = new Reaction;
 		// return
@@ -118,27 +118,67 @@ class ClientController extends BaseController {
 	public function edit($id) {
 		// get input
 		$client = Client::find($id);
+		// blocks
+		$blocks = $client->blocks;
 		// check if post
 		if(Request::isMethod('put')) {
 			// get input
 			$client->fill(Input::all());
+			// loop through blocks
+			foreach(Input::get('block') as $key => $block) {
+				// check if exists
+				if(!isset($blocks[$key]))
+					$blocks[$key] = new Block;
+				// data
+				$blocks[$key]->text = $block["'text'"];
+				$blocks[$key]->block_type = $block["'type'"];
+				$blocks[$key]->object_type = 'client';
+				// check if picture
+				if($blocks[$key]->block_type == 'picture') {
+					$blocks[$key]->picture_pos = $block["'picture_pos'"];
+					// get file
+					if(Input::hasFile("block_picture_" . $key) && Input::file("block_picture_" . $key)->isValid()) {
+						$file = Input::file("block_picture_" . $key);
+						$filename = str_random(10) . "." . $file->getClientOriginalExtension();
+						$file->move("assets/images/blocks/client", $filename);
+						$blocks[$key]->picture = $filename;
+					}
+				}
+			}
 			// get file
 			if(Input::hasFile('picture') && Input::file('picture')->isValid()) {
 				$file = Input::file('picture');
 				$filename = str_random(10) . "." . $file->getClientOriginalExtension();
-				unlink($client->picture);
-				$file->move("assets/img/client", $filename);
+				$file->move("assets/images/client", $filename);
 				$client->picture = $filename;
 			}
-			// make url
-			$client->name_url = strtolower($client->name) . "-" . $client->id;
 			// save
 			if($client->save()) {
+				// make url
+				$client->name_url = strtolower($client->name) . "-" . $client->id;
+				// save and redirect
+				if($client->save()) {
+					// save blocks
+					foreach($blocks as $block) {
+						$block->object_id = $client->id;
+						$block->save();
+					}
+				}
+				// redirect
 				return Redirect::route('client')->with(array('message' => 'Success!'));
 			} else {
+				if(isset($client->picture))
+					unlink("assets/images/client/" . $filename);
+				foreach($blocks as $key => $block) {
+					if(isset($block->picture))
+						unlink("assets/images/blocks/client/" . $block->picture);
+				}
+				// return
 				return View::make('client.create')->with(array(
-					'errors' => $client->errors(),
-					'url' => 'clients/edit/'.$id,
+					'errors' => $client->errors(), 
+					'client' => $client,
+					'blocks' => $blocks,
+					'url' => 'clients/edit/' . $id,
 					'method' => 'put'
 				));
 			}
@@ -146,6 +186,7 @@ class ClientController extends BaseController {
 			// return edit page
 			return View::make('client.create')->with(array(
 				'client' => $client, 
+				'blocks' => $blocks,
 				'url' => 'clients/edit/'.$id,
 				'method' => 'put'
 			));

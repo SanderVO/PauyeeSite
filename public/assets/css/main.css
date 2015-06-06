@@ -150,5 +150,21 @@ body {
 .clients-page .input-group input {
   font-size: 15pt;
 }
+.client-page .client-desc p {
+  /* font-weight: bold !important; */
+}
+.client-page .client-blocks {
+  margin-bottom: 10px;
+  display: inline-block;
+}
+.client-create .client-blocks .block-pic {
+  margin: 15px 0px;
+  width: 100%;
+}
+@media screen and (max-width: 991px) {
+    img {
+        max-width: 189px;
+    }
+}
 
 /*# sourceMappingURL=main.css.map */

@@ -16,8 +16,17 @@
 			<div class="client-desc">
 				{{ $client->description }}
 			</div>
-			<div class="client-text">
-				{{ $client->text }}
+			<div class="client-blocks">
+				@foreach($client->blocks as $key => $block)
+					<div class="client-block left">
+						@if($block->block_type == 'picture')
+							<div class="client-picture">
+								{{ HTML::image('assets/images/blocks/client/' . $block->picture, '', array('id' => $key, 'class' => 'col-md-3 ' . $block->picture_pos)) }}
+							</div>
+						@endif
+						{{ $block->text }}
+					</div>
+				@endforeach
 			</div>
 			<div class="client-reactions">
 				<h3>Reactions</h3>

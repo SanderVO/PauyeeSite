@@ -48,5 +48,13 @@ class Client extends Ardent {
 	{
 	  return $this->hasMany('Reaction', 'object_id')->where('object', '=', 'client');
 	}
+	/**
+	 * Blocks relationship
+	 *
+	 */
+	public function blocks()
+	{
+	  return $this->hasMany('Block', 'object_id')->where('object_type', '=', 'client');
+	}
 
 }
