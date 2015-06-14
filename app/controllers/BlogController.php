@@ -2,7 +2,7 @@
 
 class BlogController extends BaseController {
 
-	/*
+	/**
 	* Controller for all Blog related actions
 	* @author Sander
 	*/
@@ -12,9 +12,24 @@ class BlogController extends BaseController {
 	*/
 	public function index() {
 		// get all blogs orderred by date
-		$blogs = BlogPost::orderBy('created_at', 'DESC')->with('reactions', 'user')->get();
+		$blogs = BlogPost::orderBy('created_at', 'DESC')->with('reactions', 'user', 'blocks')->get();
 		// return
 		return View::make('blog.index')->with('posts', $blogs);
+	}
+
+	/*
+	* Show for blog page
+	*/
+	public function show($id) {
+		// get blog
+		$blog = BlogPost::whereId($id)->with('reactions', 'user', 'blocks')->first();
+		// Reaction
+		$reaction = new Reaction;
+		// return
+		return View::make('blog.show')->with(array(
+			'post' => $blog,
+			'reaction' => $reaction
+		));
 	}
 
 	/*
@@ -23,11 +38,30 @@ class BlogController extends BaseController {
 	public function create() {
 		// new blog
 		$blog = new BlogPost;
+		$blocks = [];
 		// check if post
 		if(Request::isMethod('post')) {
 			// get input
 			$blog = new BlogPost(Input::all());
 			$blog->user_id = Auth::user()->id;
+			// loop through blocks
+			foreach(Input::get('block') as $key => $block) {
+				$blocks[$key] = new Block;
+				$blocks[$key]->text = $block["'text'"];
+				$blocks[$key]->block_type = $block["'type'"];
+				$blocks[$key]->object_type = 'blog';
+				// check if picture
+				if($blocks[$key]->block_type == 'picture') {
+					$blocks[$key]->picture_pos = $block["'picture_pos'"];
+					// get file
+					if(Input::hasFile("block_picture_" . $key) && Input::file("block_picture_" . $key)->isValid()) {
+						$file = Input::file("block_picture_" . $key);
+						$filename = str_random(10) . "." . $file->getClientOriginalExtension();
+						$file->move("assets/images/blocks/blog", $filename);
+						$blocks[$key]->picture = $filename;
+					}
+				}
+			}
 			// get file
 			if(Input::hasFile('picture') && Input::file('picture')->isValid()) {
 				$file = Input::file('picture');
@@ -41,12 +75,30 @@ class BlogController extends BaseController {
 			if($blog->save()) {
 				// make name url
 				$blog->name_url = str_replace(".", "", str_replace(" ", "-", strtolower($blog->title))); 
-				$blog->save();
+				// save and redirect
+				if($blog->save()) {
+					// save blocks
+					foreach($blocks as $block) {
+						$block->object_id = $blog->id;
+						$block->save();
+					}
+				}
+				// redirect
 				return Redirect::route('blog')->with(array('message' => 'Success!'));
 			} else {
+				return $blog->errors();
+				// unlink
+				if(isset($client->picture))
+					unlink("assets/images/client/" . $filename);
+				foreach($blocks as $key => $block) {
+					if(isset($block->picture))
+						unlink("assets/images/blocks/client/" . $block->picture);
+				}
+				// return errors
 				return View::make('blog.create')->with(array(
 					'errors' => $blog->errors(), 
 					'blog' => $blog,
+					'blocks' => $blocks,
 					'url' => 'blog/create',
 					'method' => 'post'
 				));
@@ -55,6 +107,7 @@ class BlogController extends BaseController {
 			// return edit page
 			return View::make('blog.create')->with(array(
 				'blog' => $blog, 
+				'blocks' => $blocks,
 				'url' => 'blog/create',
 				'method' => 'post'
 			));

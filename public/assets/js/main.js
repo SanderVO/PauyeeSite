@@ -24,6 +24,19 @@ $(document).ready(function() {
 	if($('#edit-slider-description').html() != undefined)
 		CKEDITOR.replace('edit-slider-description');
 
+    // init CK's
+    if($(".client-blocks").html() != undefined) {
+        var count = $(".client-blocks textarea").length;
+        for(var i=1;i<=count;i++)
+            CKEDITOR.replace("block[" + i + "][\'text\']");
+    }
+    if($(".blog-blocks").html() != undefined) {
+        var count = $(".blog-blocks textarea").length;
+        console.log(count);
+        for(var i=1;i<=count;i++)
+            CKEDITOR.replace("block[" + i + "][\'text\']");
+    }
+
 	// Link Active
     var url = window.location;
     $('.navbar a').find('.active').removeClass('active');
@@ -32,6 +45,21 @@ $(document).ready(function() {
             $(this).addClass('active');
         }
     }); 
+
+    /*
+    * Global
+    */
+    if($("#client-pic").html() != undefined) {
+        $("#picture").change(function() {
+            readURL(this, "#client-pic");
+        });
+    }
+    if($("#blog-pic").html() != undefined) {
+        $("#picture").change(function() {
+            console.log('test');
+            readURL(this, "#blog-pic");
+        });
+    }
 
     /*
     * About Page
@@ -79,6 +107,69 @@ $(document).ready(function() {
     });
 
 });
+
+/*
+* Global
+*/
+
+// make new block
+function newBlock(object, type) {
+    // request
+    $.ajax({
+        url: '/api/blocks/' + object + '/' + type,
+        type: 'GET',
+        dataType: 'json'
+    })
+    .done(function(data) {
+        // count divs
+        var count = $("." + object + "-blocks > div").length;
+        count++;
+        // append
+        $("." + object + "-blocks").append("<div class='form-group'>" +
+                "<label for='block-text'>Block Tekst</label>" +
+                "<textarea class='form-control' id=\"block[" + count + "][\'text\']\" name=\"block[" + count + "][\'text\']\"></textarea>" +
+            "</div>" +
+        "");
+        // if picture
+        if(type == 'picture') {
+            $("." + object + "-blocks").append(""+
+                "<div>Foto</div>" +
+                "<img class='col-md-4 blocks-pic' src='#' id='bpic" + count + "' />" +
+                "<input class='block-pic' type='file' name=\"block_picture_" + count + "\" id=\"block_picture_" + count + "\">" +
+                "<div>Positie Foto</div>" +
+                "<select form='" + object + "-form' name=\"block[" + count + "][\'picture_pos\']\" id=\"block[" + count + "][\'picture_pos\']\">" +
+                    "<option value='left'>Links</option>" +
+                    "<option value='right'>Rechts</option>" +
+                "</select>" +
+            "");
+        }
+        // last
+        $("." + object + "-blocks").append("" +
+            "<input type='hidden' value='" + type + "' name=\"block[" + count + "][\'type\']\" id=\"block[" + count + "][\'type\']\">" +
+            "<hr>" +
+        "");
+        // init CK
+        CKEDITOR.replace("block[" + count + "][\'text\']");
+        // init listener
+        $("#block_picture_" + count).change(function() {
+            readURL(this, "#bpic" + count);
+        });
+    })
+    .fail(function() {
+        console.log("error");
+    }); 
+}
+
+// read url and show image
+function readURL(input, id) {
+    if(input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $(id).attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 
 /**
 * Clients Page

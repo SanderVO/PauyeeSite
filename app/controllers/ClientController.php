@@ -85,7 +85,6 @@ class ClientController extends BaseController {
 				// redirect
 				return Redirect::route('client')->with(array('message' => 'Success!'));
 			} else {
-				return $client->errors();
 				if(isset($client->picture))
 					unlink("assets/images/client/" . $filename);
 				foreach($blocks as $key => $block) {

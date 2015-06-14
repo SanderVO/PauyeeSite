@@ -26,7 +26,6 @@ class BlogPost extends Ardent {
 	protected $fillable = array(
 		'title',
 		'intro',
-		'text',
 		'user_id'
 	);
 
@@ -37,8 +36,7 @@ class BlogPost extends Ardent {
 	 */
 	public static $rules = array(
 		'title' => 'required|max:40',
-		'intro' => 'required',
-		'text' => 'required|min:50'
+		'intro' => 'required'
 	);
 
 	/**
@@ -47,7 +45,7 @@ class BlogPost extends Ardent {
 	 */
 	public function reactions()
 	{
-	  return $this->hasMany('BlogReaction', 'blog_posts_id');
+	  return $this->hasMany('Reaction', 'object_id')->where('object', '=', 'blog');
 	}
 	/**
 	 * User relationship
@@ -56,6 +54,14 @@ class BlogPost extends Ardent {
 	public function user()
 	{
 	  return $this->belongsTo('User', 'user_id');
+	}
+	/**
+	 * Blocks relationship
+	 *
+	 */
+	public function blocks()
+	{
+	  return $this->hasMany('Block', 'object_id')->where('object_type', '=', 'blog');
 	}
 
 }

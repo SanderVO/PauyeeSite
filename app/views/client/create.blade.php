@@ -2,8 +2,6 @@
 
 @section('content')
 
-	<script src="assets/js/clients.js"></script>
-
 	<div class="client-create">
 		<div class="container">
 			@if(isset($message))
@@ -12,6 +10,7 @@
 	    	{{ Form::model($client, array('id' => 'client-form', 'url' => $url, 'files' => true, 'class' => 'col-md-8 col-md-offset-2', 'method' => $method)) }}
 			    <div class="form-group">
 			    	{{ Form::label('picture', 'Picture'); }}
+			    	<img class='col-md-4 blocks-pic' src='#' id='client-pic' />
 			    	{{ Form::file('picture'); }}
 			    	@if(isset($errors)) {{ $errors->first('picture'); }} @endif
 			    </div>
@@ -34,16 +33,17 @@
 					    </div>
 						@if($block->block_type == 'picture')
 					    	<div>Foto</div>
-					    	<img class="col-md-4" src="assets/images/blocks/client/{{ $block->picture }}" id="bpic{{ $key }}">
+					    	<img class="col-md-4 blocks-pic" src="assets/images/blocks/client/{{ $block->picture }}" id="bpic{{ $key }}">
 					    	{{ Form::file("block[$key]['picture']", array('class' => 'block-pic')) }}
 					    	<div>Positie Foto</div>
 					    	{{ Form::select("block[$key]['picture_pos']", array('left' => 'Links', 'right' => 'Rechts'), $block->picture_pos); }}
 					    @endif
 				    	{{ Form::hidden("block[$key]['type']", $block->block_type) }}
 					@endforeach
+				</div>
 				<div class="client-blocks-btns">
-					<input type="button" class="btn btn-primary" onclick="newBlock('text');" value="Niew Textblok">
-					<input type="button" class="btn btn-primary" onclick="newBlock('picture');" value="Nieuw Textblok met foto">
+					<input type="button" class="btn btn-primary" onclick="newBlock('client', 'text');" value="Niew Textblok">
+					<input type="button" class="btn btn-primary" onclick="newBlock('client', 'picture');" value="Nieuw Textblok met foto">
 				</div>
 		    	{{ Form::submit('Save', array('class' => 'btn btn-success')); }}
 	    	{{ Form::close() }}

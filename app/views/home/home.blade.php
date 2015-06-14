@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class="home">
-		<div id="home-slider">
+		<div id="home-slider" class="maxvh">
 			<ul class="slideme">
 				@foreach($pictures as $picture)
 					<li>
@@ -14,7 +14,11 @@
 			</ul>
 		</div>
 		<div class="container">
-			<div class="home-instagram">
+			<div class="home-about maxvh">
+				<h2>About Me</h2>
+				<p>{{ $about->text }}</p>
+			</div>
+			<div class="home-instagram maxvh">
 				<h2>Instagram</h2>
 				@foreach($instadata['data'] as $data)
 					<div class="home-instagram-pic">

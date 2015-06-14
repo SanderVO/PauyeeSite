@@ -56,6 +56,7 @@ Route::group(array('prefix' => 'blog'), function() {
 	Route::get('/edit/{id}', array('before' => 'auth', 'as' => 'blog.edit.page', 'uses' => 'BlogController@edit'));
 	Route::put('/edit/{id}', array('before' => 'auth', 'as' => 'blog.edit', 'uses' => 'BlogController@edit'));
 	Route::delete('/delete/{id}', array('before' => 'auth', 'as' => 'blog.delete', 'uses' => 'BlogController@delete'));
+	Route::get('/{id}', array('as' => 'blog.show', 'uses' => 'BlogController@show'));
 });
 
 /*
