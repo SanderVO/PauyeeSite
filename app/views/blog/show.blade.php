@@ -1,27 +1,27 @@
 @extends('layouts.master')
 
 @section('content')
-	<div class="client-page container">
-    	<!-- Client picture and text -->
-		<div class="client-head col-md-8 col-md-offset-2">
-			<div class="client-picture center">
+	<div class="blog-page mrgnbtn container">
+    	<!-- blog picture and text -->
+		<div class="blog-head col-md-8 col-md-offset-2">
+			<div class="blog-picture center">
 				<img class="rounded-pic" src="assets/images/blog/{{ $post->picture }}" />
 			</div>
-			<div class="client-name center">
+			<div class="blog-name center">
 				<h2>{{ $post->title }}</h2>
 			</div>
 		</div>
-		<!-- Client text & reactions -->
-		<div class="client-text col-md-10 col-md-offset-1">
-			<div class="client-desc">
+		<!-- blog text & reactions -->
+		<div class="blog-text col-md-10 col-md-offset-1">
+			<div class="blog-desc">
 				<p>{{ $post->intro }}</p>
 			</div>
-			<div class="client-blocks">
+			<div class="blog-blocks">
 				@foreach($post->blocks as $key => $block)
-					<div class="client-block left">
+					<div class="blog-block left">
 						<p>
 							@if($block->block_type == 'picture')
-								<div class="client-picture">
+								<div class="blog-picture">
 									{{ HTML::image('assets/images/blocks/blog/' . $block->picture, '', array('id' => $key, 'class' => 'col-md-3 ' . $block->picture_pos)) }}
 								</div>
 							@endif
@@ -30,16 +30,16 @@
 					</div>
 				@endforeach
 			</div>
-			<div class="client-reactions">
+			<div class="blog-reactions">
 				<h3>Reactions</h3>
 				@foreach($post->reactions as $react)
-				<div class="client-reaction">
+				<div class="blog-reaction">
 					<div class="reaction-name"><b>{{ $react->name }}</b></div>
 					<div class="reaction-message">{{ $react->text }}</div>
 				</div>
 				@endforeach
 			</div>
-			<div class="client-reactions-make">
+			<div class="blog-reactions-make">
 				<h3>Make Reaction</h3>
 		    	{{ Form::model($reaction, array('url' => 'reactions/create', 'method' => 'POST')) }}
 			    	<div class="form-group">
@@ -52,8 +52,9 @@
 				    	{{ Form::text('text', $reaction->text, array('class' => 'form-control')); }}
 				    	@if(isset($errors)) {{ $errors->first('text'); }} @endif
 				    </div>
-				    {{ Form::hidden('object', 'client') }}
+				    {{ Form::hidden('object', 'blog') }}
 				    {{ Form::hidden('object_id', $post->id) }}
+				    {{ Form::hidden('redirect', 'blog') }}
 			    	{{ Form::submit('Save', array('class' => 'btn btn-success')); }}
 		    	{{ Form::close() }}
 			</div>

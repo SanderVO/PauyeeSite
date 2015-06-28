@@ -14,12 +14,13 @@ class ReactionController extends BaseController {
 		// new about
 		$reaction = new Reaction(Input::all());
 		$reaction->ip = Request::getClientIp(true);
+		$redirect = Input::get('redirect');
 		// save
 		if($reaction->save()) {
 			// redirect
-			return Redirect::route('client')->with(array('message' => 'Success!'));
+			return Redirect::route($redirect)->with(array('message' => 'Success!'));
 		} else {
-			return Redirect::route('client')->with(array('message' => 'Error!'));
+			return Redirect::route($redirect)->with(array('message' => 'Error!'));
 		}
 	}
 

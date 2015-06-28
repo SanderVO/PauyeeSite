@@ -52,6 +52,7 @@
 				    </div>
 				    {{ Form::hidden('object', 'client') }}
 				    {{ Form::hidden('object_id', $client->id) }}
+				    {{ Form::hidden('redirect', 'client') }}
 			    	{{ Form::submit('Save', array('class' => 'btn btn-success')); }}
 		    	{{ Form::close() }}
 			</div>

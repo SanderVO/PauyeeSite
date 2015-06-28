@@ -19,7 +19,15 @@ class HomeController extends BaseController {
 		// get slider pictures
 		$pics = SliderPicture::orderBy('position', 'ASC')->get();
 		// get instagram pictures
-		$insta = $this->getInstagramMedia();
+		$c = 0;
+		$insta = [];
+		$tmp = $this->getInstagramMedia();
+		foreach($tmp['data'] as $val) {
+			$insta[] = $val;
+			$c++;
+			if($c == 15)
+				break 1;
+		}
 		// about
 		$about = About::first();
 		// return

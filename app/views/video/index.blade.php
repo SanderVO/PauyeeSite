@@ -4,7 +4,7 @@
 	<div class="video-page">
 	<!-- All video posts -->
 		<div class="container">
-			<div class="home-youtube col-md-12">
+			<div class="home-youtube col-md-12 mrgnbtn">
 				@foreach($youtubedata['items'] as $data)
 					<div class="home-youtube-video col-md-6">
 						@if(isset($data['id']['videoId']))

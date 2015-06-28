@@ -2,11 +2,16 @@ $(document).ready(function() {
 
 	$('#home-slider').slideme({
 		arrows: true,
-		touch : true,
-		swipe : true,
+		touch: true,
+		swipe: true,
+        css3: true,
+        autoSlide: true,
+        autoslideHoverStop: true,
+        interval: 2000,
+        loop: true,
 		labels : {
-			next: 'next',
-			prev: 'prev'
+			next: '<i class="fa fa-arrow-right fa-2x"></i>',
+			prev: '<i class="fa fa-arrow-left fa-2x"></i>'
 		},
 		resizable: {
 			width: 990,

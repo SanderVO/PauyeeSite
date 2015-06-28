@@ -17,12 +17,26 @@ body {
 .fullw {
   width: 100%;
 }
+.minvh {
+  min-height: 100vh;
+}
 .maxvh {
-  height: 100vh;
+  max-height: 100vh;
+}
+body a {
+  color: #cbffd8;
+}
+.mrgnbtn {
+  margin-bottom: 20px;
 }
 
 .navbar {
   background-color: #cbffd8;
+  border: none;
+}
+.navbar a,
+.navbar-text {
+  color: white !important;
 }
 .navbar a.active {
   color: black;
@@ -32,12 +46,24 @@ body {
   z-index: 9999;
   bottom: 190px;  
 }
+.navbar-toggle {
+  background-color: white;
+  border: none;
+}
+.navbar-collapse {
+  border: none;
+}
+.navbar-toggle:hover,
+.navbar-toggle:active {
+  border: none;
+  background-color: white;
+}
 
 .footer {
   margin-bottom: 0px;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   bottom: 0px;
-  width: 100%;
+  /* width: 100%; */
   /* position: absolute; */
 }
 
@@ -90,7 +116,7 @@ body {
 
 .slideme {
   width: 100%;
-  height: 100vh !important;
+  max-height: 100vh !important;
 }
 .slideme img {
   width: 100%;
@@ -99,36 +125,61 @@ body {
 #home-slider {
   margin-top: -20px;
 }
+#home-slider {
+  color: white;
+}
 #home-slider .arrow.next {
+  background-color: transparent;
   position: absolute;
   right: 0;
   top: 40%;
   z-index: 99;
+  border: 0px;
 }
 #home-slider .arrow.prev {
   position: absolute;
   left: 0;
   top: 40%;
   z-index: 99;
+  background: transparent;
+  border: 0px;
 }
 #home-slider .slider-title {
   top: 20%;
 }
 #home-slider .slider-description {
-  top: 40%;
+  top: 55%;
 }
 #home-slider .slider-title,
 #home-slider .slider-description {
   color: white;
   position: absolute;
-  left: 100px;
+  left: 20%;
   text-shadow: 2px 2px black;
+  /* margin-bottom: 20px; */
 }
+
 .home-instagram {
   text-align: center;
+  background-color: rgb(247, 247, 247);
+  /* margin: 20px; */
+}
+.home-instagram .container > div {
+  overflow: hidden;
+  margin: 25px 0px;
 }
 .home-instagram-pic {
   float: left;
+  margin-right: 10px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+.home-about div > div,
+.home-about div p {
+  text-align: center;
+}
+.home-about div > div {
+  margin: 25px 0px;
 }
 
 .message {
@@ -144,11 +195,20 @@ body {
 **/
 .home-youtube-video {
   text-align: center;
+  margin-bottom: 20px;
+}
+.home-youtube-video iframe {
+  height: 300px;
+  width: inherit;
+  border: none;
 }
 
 /**
 * Clients
 **/
+.client-page {
+  margin-bottom: 20px;
+}
 .clients-page div:first-child {
   margin-bottom: 20px;  
 }
@@ -190,6 +250,28 @@ body {
 }
 .blocks-pic {
   width: 200px;
+}
+
+/*
+* Media Queries
+*/
+@media(min-width:768px) {
+  #home-slider .slider-description {
+    top: 33%;  
+  }
+  .home-youtube-video iframe {
+    width: 550px;
+  }
+}
+@media(min-width:992px) {
+  .home-youtube-video iframe {
+    width: 420px;
+  }
+}
+@media(min-width:1199px) {
+  .home-youtube-video iframe {
+    width: 500px;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

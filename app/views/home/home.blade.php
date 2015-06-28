@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class="home">
-		<div id="home-slider" class="maxvh">
+		<div id="home-slider">
 			<ul class="slideme">
 				@foreach($pictures as $picture)
 					<li>
@@ -13,18 +13,26 @@
 				@endforeach
 			</ul>
 		</div>
-		<div class="container">
-			<div class="home-about maxvh">
-				<h2>About Me</h2>
-				<p>{{ $about->text }}</p>
+		<div class="home-about minvh maxvh">
+			<div class="container">
+				<div class="col-md-12 col-md-offset-2">
+					<div class="col-md-12"><img class="rounded-pic" src="{{ $about->picture }}" /></div>
+					<p>{{ $about->text }}</p>
+				</div>
 			</div>
-			<div class="home-instagram maxvh">
-				<h2>Instagram</h2>
-				@foreach($instadata['data'] as $data)
-					<div class="home-instagram-pic">
-						<a href="{{ $data['link'] }}"><img src="{{ $data['images']['thumbnail']['url'] }}"></a>
+		</div>
+		<div class="home-instagram minvh">
+			<div class="container">
+				<div>
+					<h2>Instagram</h2>
+					<div class="home-insta-pics col-md-offset-1">
+					@foreach($instadata as $data)
+						<div class="home-instagram-pic">
+							<a href="{{ $data['link'] }}"><img src="{{ $data['images']['thumbnail']['url'] }}"></a>
+						</div>
+					@endforeach
 					</div>
-				@endforeach
+				</div>
 			</div>
 		</div>
 	</div>
