@@ -14,17 +14,26 @@
 			</ul>
 		</div>
 		<div class="home-about minvh maxvh">
+			<div class="col-md-12 col-sm-12 col-xs-12 home-header about">
+				<div class="col-lg-4 col-sm-4 col-md-4 col-xs-8 col-md-offset-4 col-sm-offset-4 col-xs-offset-2">
+					<h2>About Me</h2>
+				</div>
+			</div>
 			<div class="container">
-				<div class="col-md-12 col-md-offset-2">
+				<div class="col-md-12">
 					<div class="col-md-12"><img class="rounded-pic" src="{{ $about->picture }}" /></div>
 					<p>{{ $about->text }}</p>
 				</div>
 			</div>
 		</div>
 		<div class="home-instagram minvh">
+			<div class="col-md-12 col-sm-12 col-xs-12 home-header insta">
+				<div class="col-sm-4 col-md-4 col-md-offset-4 col-sm-offset-4 col-xs-8 col-xs-offset-2">
+					<h2>Instagram</h2>
+				</div>
+			</div>
 			<div class="container">
 				<div>
-					<h2>Instagram</h2>
 					<div class="home-insta-pics col-md-offset-1">
 					@foreach($instadata as $data)
 						<div class="home-instagram-pic">

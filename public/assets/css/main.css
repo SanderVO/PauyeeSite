@@ -24,14 +24,14 @@ body {
   max-height: 100vh;
 }
 body a {
-  color: #cbffd8;
+  color: black;
 }
 .mrgnbtn {
   margin-bottom: 20px;
 }
 
 .navbar {
-  background-color: #cbffd8;
+  background-color: #A6FFBC;
   border: none;
 }
 .navbar a,
@@ -117,9 +117,11 @@ body a {
 .slideme {
   width: 100%;
   max-height: 100vh !important;
+  min-height: 100vh !important;
 }
 .slideme img {
   width: 100%;
+  height: 100vh;
 }
 
 #home-slider {
@@ -158,7 +160,21 @@ body a {
   text-shadow: 2px 2px black;
   /* margin-bottom: 20px; */
 }
-
+#home-slider, .home-about {
+  border-bottom: 1px solid lightgray;
+}
+.home-header {
+  position: absolute;
+  z-index: 99;
+  top: -33px;
+}
+.home-header > div {
+  background-color: white;
+  border: 1px solid lightgray;
+}
+.home-about, .home-instagram {
+  position: relative;
+}
 .home-instagram {
   text-align: center;
   background-color: rgb(247, 247, 247);
@@ -166,7 +182,7 @@ body a {
 }
 .home-instagram .container > div {
   overflow: hidden;
-  margin: 25px 0px;
+  margin: 60px 0px;
 }
 .home-instagram-pic {
   float: left;
@@ -177,9 +193,10 @@ body a {
 .home-about div > div,
 .home-about div p {
   text-align: center;
+  margin-bottom: 20px;
 }
-.home-about div > div {
-  margin: 25px 0px;
+.home-about .container > div {
+  margin: 55px 0px;
 }
 
 .message {
@@ -206,11 +223,23 @@ body a {
 /**
 * Clients
 **/
+.client {
+  box-shadow: 0px 3px 15px #888888;
+  min-height: 500px;
+  max-height: 500px;
+  margin: 20px 0px;
+}
+.client-info {
+  text-align: center;
+}
+.client-picture {
+  margin-top: 20px;
+}
 .client-page {
   margin-bottom: 20px;
 }
 .clients-page div:first-child {
-  margin-bottom: 20px;  
+  /* margin-bottom: 20px; */  
 }
 .clients-page .input-group input,
 .clients-page .input-group-btn .btn {
@@ -235,6 +264,22 @@ body a {
     .blog-page img {
         max-width: 189px;
     }
+    .client {
+      margin: 20px 0px;
+    }
+}
+@media(min-width:991px) {
+  .client {
+    margin: 20px;
+  }
+  .clients {
+    margin-left: 45px;
+  }
+}
+@media(min-width:1199px) {
+  .clients {
+    margin-left: 55px;
+  }
 }
 
 /*
