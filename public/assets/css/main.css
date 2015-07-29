@@ -3,44 +3,9 @@
     src: url("../fonts/DroidSerif.ttf");
 }
 
-body {
-  font-family: droid;
-  font-size: 2em;
-  color: #333333;
-  background-color: white;
-  padding-top: 70px;
-  font-size: 15px;
-}
-.body {
-  min-height: 83vh;
-}
-.fullw {
-  width: 100%;
-}
-.minvh {
-  min-height: 100vh;
-}
-.maxvh {
-  max-height: 100vh;
-}
-body a {
-  color: black;
-}
-.mrgnbtn {
-  margin-bottom: 20px;
-}
-
 .navbar {
-  background-color: #A6FFBC;
+  background-color: #282B3C;
   border: none;
-}
-.navbar a,
-.navbar-text {
-  color: white !important;
-}
-.navbar a.active {
-  color: black;
-  font-weight: bold;
 }
 .navbar-bottom {
   z-index: 9999;
@@ -58,10 +23,60 @@ body a {
   border: none;
   background-color: white;
 }
+.navbar a {
+  color: white !important;
+  transition: color 0.2s ease;
+  -webkit-transition: color 0.2s ease;
+  -moz-transition: color 0.2s ease;
+  -o-transition: color 0.2s ease;
+}
+.navbar a:hover,
+.neon {
+  color: #2CD1C1 !important;
+}
+.navbar a.active {
+  color: #2CD1C1 !important;
+}
+
+body {
+  font-family: droid;
+  font-size: 2em;
+  color: white;
+  background-color: #282B3C;
+  padding-top: 70px;
+  font-size: 15px;
+}
+body .neon {
+  color: #2CD1C1;
+}
+.body {
+  min-height: 83vh;
+}
+.fullw {
+  width: 100%;
+}
+.minvh {
+  min-height: 100vh;
+}
+.maxvh {
+  max-height: 100vh;
+}
+body a {
+  color: white;
+}
+.mrgnbtn {
+  margin-bottom: 20px;
+}
+.mrgntop {
+  margin-top: 20px;
+}
+.mrgntop-col {
+  margin-top: 50px;
+}
 
 .footer {
-  margin-bottom: 0px;
-  /* margin-top: 20px; */
+  margin-bottom: 20px;
+  margin-top: 20px;
   bottom: 0px;
   /* width: 100%; */
   /* position: absolute; */
@@ -126,6 +141,7 @@ body a {
 
 #home-slider {
   margin-top: -20px;
+  overflow: hidden;
 }
 #home-slider {
   color: white;
@@ -160,8 +176,8 @@ body a {
   text-shadow: 2px 2px black;
   /* margin-bottom: 20px; */
 }
-#home-slider, .home-about {
-  border-bottom: 1px solid lightgray;
+#home-slider .slider-img {
+  width: 100%;
 }
 .home-header {
   position: absolute;
@@ -177,7 +193,7 @@ body a {
 }
 .home-instagram {
   text-align: center;
-  background-color: rgb(247, 247, 247);
+  /* background-color: rgb(247, 247, 247); */
   /* margin: 20px; */
 }
 .home-instagram .container > div {
@@ -190,14 +206,20 @@ body a {
   margin-left: 20px;
   margin-bottom: 10px;
 }
+.home-about,
+.home-instagram {
+  margin-top: 25vh;
+  margin-bottom: 25vh;
+}
 .home-about div > div,
 .home-about div p {
   text-align: center;
-  margin-bottom: 20px;
 }
 .home-about .container > div {
-  margin: 55px 0px;
+  margin: 0 auto;
 }
+
+.col-md-12 {}
 
 .message {
   font-weight: bold;
@@ -213,6 +235,7 @@ body a {
 .home-youtube-video {
   text-align: center;
   margin-bottom: 20px;
+  height: 400px;
 }
 .home-youtube-video iframe {
   height: 300px;
@@ -231,6 +254,11 @@ body a {
 }
 .client-info {
   text-align: center;
+}
+.clients-page a,
+.clients-page a:hover {
+  color: #2CD1C1 !important;
+  text-decoration: none;
 }
 .client-picture {
   margin-top: 20px;

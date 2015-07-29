@@ -2,39 +2,55 @@
 
 @section('content')
 	<div class="home">
-		<div id="home-slider">
-			<ul class="slideme">
-				@foreach($pictures as $picture)
-					<li>
-						<div class="slider-title"><h1>{{ $picture->title }}</h1></div>
-						<div class="slider-description">{{ $picture->description }}</div>
-						<img src="assets/images/slider/{{ $picture->picture }}">
-					</li>
+
+		<div id="home-slider" class="carousel slide maxvh" data-ride="carousel">
+			<!-- Indicators -->
+			<ol class="carousel-indicators">
+				@foreach($pictures as $key => $picture)
+					<li data-target="#home-slider" data-slide-to="{{ $key }}"></li>
 				@endforeach
-			</ul>
-		</div>
-		<div class="home-about minvh maxvh">
-			<div class="col-md-12 col-sm-12 col-xs-12 home-header about">
-				<div class="col-lg-4 col-sm-4 col-md-4 col-xs-8 col-md-offset-4 col-sm-offset-4 col-xs-offset-2">
-					<h2>About Me</h2>
-				</div>
+			</ol>
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner maxvh" role="listbox">
+				@foreach($pictures as $key => $picture)
+					@if($key == 0)
+					    <div class="item active fullw">
+					      <img class="slider-img" src="assets/images/slider/{{ $picture->picture }}" alt="{{ $picture->title }}">
+					    </div>
+					@endif
+					@if($key > 0)
+					    <div class="item fullw">
+					      <img class="slider-img" src="assets/images/slider/{{ $picture->picture }}" alt="{{ $picture->title }}">
+					    </div>
+					@endif
+				@endforeach
 			</div>
+			<!-- Left and right controls -->
+			<a class="left carousel-control" href="#home-slider" role="button" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+				</a>
+				<a class="right carousel-control" href="#home-slider" role="button" data-slide="next">
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
+
+		<div class="home-about">
 			<div class="container">
-				<div class="col-md-12">
-					<div class="col-md-12"><img class="rounded-pic" src="{{ $about->picture }}" /></div>
+				<div class="col-md-12 mrgntop-col">
+					<h2>About <span class="neon">Me</span></h2>
+					<div class="col-md-12 mrgntop-col mrgnbtn"><img class="rounded-pic" src="{{ $about->picture }}" /></div>
 					<p>{{ $about->text }}</p>
 				</div>
 			</div>
 		</div>
+
 		<div class="home-instagram minvh">
-			<div class="col-md-12 col-sm-12 col-xs-12 home-header insta">
-				<div class="col-sm-4 col-md-4 col-md-offset-4 col-sm-offset-4 col-xs-8 col-xs-offset-2">
-					<h2>Instagram</h2>
-				</div>
-			</div>
 			<div class="container">
 				<div>
-					<div class="home-insta-pics col-md-offset-1">
+					<h2>Insta<span class="neon">gram</span></h2>
+					<div class="home-insta-pics col-md-offset-1 mrgntop-col">
 					@foreach($instadata as $data)
 						<div class="home-instagram-pic">
 							<a href="{{ $data['link'] }}"><img src="{{ $data['images']['thumbnail']['url'] }}"></a>
@@ -44,5 +60,6 @@
 				</div>
 			</div>
 		</div>
+
 	</div>
 @stop

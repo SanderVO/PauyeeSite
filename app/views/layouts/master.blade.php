@@ -62,7 +62,7 @@
 		  	@else
 				<p class="navbar-text navbar-left"><a href="logout" class="navbar-link">Logout</a></p>
 			@endif
-		    <p class="navbar-text navbar-right">Made by Sander</p>
+		    <p class="navbar-text navbar-right neon">Made by Sander</p>
 		  </div>
 		</nav>
     </body>

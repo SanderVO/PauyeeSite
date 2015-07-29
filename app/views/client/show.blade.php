@@ -8,7 +8,7 @@
 				<img class="rounded-pic" src="assets/images/client/{{ $client->picture }}" />
 			</div>
 			<div class="client-name center">
-				<h2>{{ $client->name }}</h2>
+				<h2 class="neon">{{ $client->name }}</h2>
 			</div>
 		</div>
 		<!-- Client text & reactions -->
@@ -29,16 +29,16 @@
 				@endforeach
 			</div>
 			<div class="client-reactions">
-				<h3>Reactions</h3>
+				<h3 class="neon">Reactions</h3>
 				@foreach($client->reactions as $react)
 				<div class="client-reaction">
-					<div class="reaction-name"><b>{{ $react->name }}</b></div>
+					<div class="reaction-name neon"><b>{{ $react->name }}</b></div>
 					<div class="reaction-message">{{ $react->text }}</div>
 				</div>
 				@endforeach
 			</div>
 			<div class="client-reactions-make">
-				<h3>Make Reaction</h3>
+				<h3 class="neon">Make Reaction</h3>
 		    	{{ Form::model($reaction, array('url' => 'reactions/create', 'method' => 'POST')) }}
 			    	<div class="form-group">
 				    	{{ Form::label('name', 'Name'); }}
