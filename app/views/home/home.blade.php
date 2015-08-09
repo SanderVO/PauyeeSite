@@ -15,12 +15,20 @@
 				@foreach($pictures as $key => $picture)
 					@if($key == 0)
 					    <div class="item active fullw">
-					      <img class="slider-img" src="assets/images/slider/{{ $picture->picture }}" alt="{{ $picture->title }}">
+							<div class="slider-text">
+								<span>{{ $picture->title }}</span></br>
+								<span class="txt-subt">{{ $picture->description }}</span>
+							</div>
+					     	<img class="slider-img" src="assets/images/slider/{{ $picture->picture }}" alt="{{ $picture->title }}">
 					    </div>
 					@endif
 					@if($key > 0)
 					    <div class="item fullw">
-					      <img class="slider-img" src="assets/images/slider/{{ $picture->picture }}" alt="{{ $picture->title }}">
+							<div class="slider-text">
+								<span>{{ $picture->title }}</span></br>
+								<span class="txt-subt">{{ $picture->description }}</span>
+							</div>
+					     	<img class="slider-img" src="assets/images/slider/{{ $picture->picture }}" alt="{{ $picture->title }}">
 					    </div>
 					@endif
 				@endforeach

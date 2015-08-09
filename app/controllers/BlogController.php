@@ -84,7 +84,7 @@ class BlogController extends BaseController {
 					}
 				}
 				// redirect
-				return Redirect::route('blog')->with(array('message' => 'Success!'));
+				return Redirect::route('blog/'.$blog->id)->with(array('message' => 'Success!'));
 			} else {
 				return $blog->errors();
 				// unlink

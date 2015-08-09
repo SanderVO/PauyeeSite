@@ -28,17 +28,16 @@
 					</div>
 				@endforeach
 			</div>
-			<div class="client-reactions">
+			<div class="reactions">
 				<h3 class="neon">Reactions</h3>
 				@foreach($client->reactions as $react)
-				<div class="client-reaction">
+				<div class="reaction">
 					<div class="reaction-name neon"><b>{{ $react->name }}</b></div>
 					<div class="reaction-message">{{ $react->text }}</div>
 				</div>
 				@endforeach
 			</div>
-			<div class="client-reactions-make">
-				<h3 class="neon">Make Reaction</h3>
+			<div class="reactions-make">
 		    	{{ Form::model($reaction, array('url' => 'reactions/create', 'method' => 'POST')) }}
 			    	<div class="form-group">
 				    	{{ Form::label('name', 'Name'); }}
@@ -47,13 +46,13 @@
 				    </div>
 				    <div class="form-group">
 				    	{{ Form::label('text', 'Message'); }}
-				    	{{ Form::text('text', $reaction->text, array('class' => 'form-control')); }}
+				    	{{ Form::textarea('text', $reaction->text, array('class' => 'form-control')); }}
 				    	@if(isset($errors)) {{ $errors->first('text'); }} @endif
 				    </div>
 				    {{ Form::hidden('object', 'client') }}
 				    {{ Form::hidden('object_id', $client->id) }}
-				    {{ Form::hidden('redirect', 'client') }}
-			    	{{ Form::submit('Save', array('class' => 'btn btn-success')); }}
+				    {{ Form::hidden('redirect', 'client/'.$client->id) }}
+			    	{{ Form::submit('Place Reaction!', array('class' => 'btn btn-success')); }}
 		    	{{ Form::close() }}
 			</div>
 		</div>

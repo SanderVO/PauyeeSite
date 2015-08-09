@@ -65,6 +65,15 @@ $(document).ready(function() {
             readURL(this, "#blog-pic");
         });
     }
+    $(window).bind("scroll", function() {
+        if(window.pageYOffset > 1) {
+            $("nav").addClass('small');
+            $("nav").removeClass('big');
+        } else {
+            $("nav").addClass('big');
+            $("nav").removeClass('small');
+        }
+    });
 
     /*
     * About Page

@@ -26,7 +26,7 @@
 
     <body>
         @section('sidebar')
-        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <nav class="navbar navbar-default navbar-fixed-top big" role="navigation">
         	<div class="container">
 	        	<div class="navbar-header">
 	        		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -57,12 +57,22 @@
         @section('footer')
 		<nav class="navbar footer navbar-default">
 		  <div class="container">
-		  	@if(!isset(Auth::user()->id))
-		  		<p class="navbar-text navbar-left"><a href="login" class="navbar-link">Login</a></p>
-		  	@else
-				<p class="navbar-text navbar-left"><a href="logout" class="navbar-link">Logout</a></p>
-			@endif
-		    <p class="navbar-text navbar-right neon">Made by Sander</p>
+		  	<div class="col-md-2">
+			  	@if(!isset(Auth::user()->id))
+			  		<p class="navbar-text navbar-left"><a href="login" class="navbar-link">Login</a></p>
+			  	@else
+					<p class="navbar-text navbar-left"><a href="logout" class="navbar-link">Logout</a></p>
+				@endif
+			</div>
+			<div class="col-md-8 social-links center">
+				<a href="https://twitter.com/pauyeeee" target="_blank"><i class="fa fa-twitter-square fa-4"></i></a>
+				<a href="https://www.facebook.com/pauyee.lim" target="_blank"><i class="fa fa-facebook-square fa-4"></i></a>
+				<a href="https://instagram.com/pauyeefitness/" target="_blank"><i class="fa fa-instagram fa-4"></i></a>
+				<a href="https://www.youtube.com/channel/UC4v7Xq5W45aAlnX8RaQRZ1g" target="_blank"><i class="fa fa-youtube-play fa-4"></i></a>
+			</div>
+			<div class="col-md-2">
+		    	<p class="navbar-text navbar-right neon">Made by Sander</p>
+		    </div>
 		  </div>
 		</nav>
     </body>

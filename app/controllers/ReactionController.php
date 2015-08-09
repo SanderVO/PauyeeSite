@@ -18,9 +18,9 @@ class ReactionController extends BaseController {
 		// save
 		if($reaction->save()) {
 			// redirect
-			return Redirect::route($redirect)->with(array('message' => 'Success!'));
+			return Redirect::to($redirect)->with(array('message' => 'Success!'));
 		} else {
-			return Redirect::route($redirect)->with(array('message' => 'Error!'));
+			return Redirect::to($redirect)->with(array('message' => 'Error!'));
 		}
 	}
 
