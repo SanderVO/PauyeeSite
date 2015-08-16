@@ -9,7 +9,7 @@
 	    	{{ Form::model($blog, array('id' => 'blog-form', 'url' => $url, 'files' => true, 'class' => 'left', 'method' => $method)) }}
 			    <div class="form-group">
 			    	{{ Form::label('picture', 'Foto', array('class' => 'left fullw')); }}
-			    	<img class='col-md-4 blocks-pic' src='#' id='blog-pic' />
+			    	<img class='col-md-4 blocks-pic' src="assets/images/blog/{{ $blog->picture }}" id='blog-pic' />
 			    	{{ Form::file('picture', array('class' => 'form-control')); }}
 			    	@if(isset($errors)) {{ $errors->first('picture'); }} @endif
 			    </div>
@@ -25,19 +25,23 @@
 			    </div>
 			    <div class="blog-blocks">
 					@foreach($blocks as $key => $block)
-						<hr>
-						<div class="form-group">
-					    	{{ Form::label('block-text', 'Block Tekst'); }}
-					    	{{ Form::textarea("block[$key]['text']", $block->text, array('class' => 'form-control', 'id' => "block[$key]['text']")); }}
+						<div class="blog-block">
+							<hr>
+							<div class="form-group">
+						    	{{ Form::label('block-text', 'Block Tekst'); }}
+						    	{{ Form::textarea("block[$key]['text']", $block->text, array('class' => 'form-control', 'id' => "block[$key]['text']")); }}
+						    </div>
+							@if($block->block_type == 'picture')
+						    	<div>Foto</div>
+						    	<img class="col-md-4 blocks-pic" src="assets/images/blocks/blog/{{ $block->picture }}" id="bpic{{ $key }}">
+						    	{{ Form::file("block[$key]['picture']", array('class' => 'block-pic')) }}
+						    	<div>Positie Foto</div>
+						    	{{ Form::select("block[$key]['picture_pos']", array('left' => 'Links', 'right' => 'Rechts'), $block->picture_pos); }}
+						    @endif
+					    	{{ Form::hidden("block[$key]['type']", $block->block_type) }}
+					    	{{ Form::hidden("block[$key]['id']", $block->id) }}
+					    	<input type="button" class="btn btn-primary" onclick="delBlock(this);" value="Verwijder">
 					    </div>
-						@if($block->block_type == 'picture')
-					    	<div>Foto</div>
-					    	<img class="col-md-4 blocks-pic" src="assets/images/blocks/blog/{{ $block->picture }}" id="bpic{{ $key }}">
-					    	{{ Form::file("block[$key]['picture']", array('class' => 'block-pic')) }}
-					    	<div>Positie Foto</div>
-					    	{{ Form::select("block[$key]['picture_pos']", array('left' => 'Links', 'right' => 'Rechts'), $block->picture_pos); }}
-					    @endif
-				    	{{ Form::hidden("block[$key]['type']", $block->block_type) }}
 					@endforeach
 				</div>
 				<div class="blog-blocks-btns">

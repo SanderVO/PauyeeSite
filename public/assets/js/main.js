@@ -38,7 +38,7 @@ $(document).ready(function() {
     if($(".blog-blocks").html() != undefined) {
         var count = $(".blog-blocks textarea").length;
         console.log(count);
-        for(var i=1;i<=count;i++)
+        for(var i=0;i<=count;i++)
             CKEDITOR.replace("block[" + i + "][\'text\']");
     }
 
@@ -126,6 +126,10 @@ $(document).ready(function() {
 * Global
 */
 
+function delBlock(id) {
+    $(id).parent().remove();
+}
+
 // make new block
 function newBlock(object, type) {
     // request
@@ -139,7 +143,7 @@ function newBlock(object, type) {
         var count = $("." + object + "-blocks > div").length;
         count++;
         // append
-        $("." + object + "-blocks").append("<div class='form-group'>" +
+        $("." + object + "-blocks").append("<div class='blog-block'><div class='form-group'>" +
                 "<label for='block-text'>Block Tekst</label>" +
                 "<textarea class='form-control' id=\"block[" + count + "][\'text\']\" name=\"block[" + count + "][\'text\']\"></textarea>" +
             "</div>" +
@@ -160,7 +164,8 @@ function newBlock(object, type) {
         // last
         $("." + object + "-blocks").append("" +
             "<input type='hidden' value='" + type + "' name=\"block[" + count + "][\'type\']\" id=\"block[" + count + "][\'type\']\">" +
-            "<hr>" +
+            "<input type='button' class='btn btn-primary' onclick='delBlock(this);' value='Verwijder'>" +
+            "<hr></div>" +
         "");
         // init CK
         CKEDITOR.replace("block[" + count + "][\'text\']");
@@ -203,4 +208,14 @@ function searchClients() {
     .fail(function() {
         console.log("error");
     });      
+}
+
+/**
+* Blog page
+**/
+function showPosts(id) {
+    if($(id).next().css('height') == '0px')
+        $(id).next().css('height', 'auto');
+    else
+        $(id).next().css('height', '0px');
 }

@@ -17,7 +17,7 @@
 	    @endif
     	<!-- All slider posts -->
     	@if(!empty($sliders))
-    		<div class="sliders">
+    		<div class="sliders col-md-12">
 	    		@foreach($sliders as $slider)
 	    			<div class="slider col-md-6">
 	    				<h1><b>{{ $slider->title }}</b></h1>
@@ -26,8 +26,8 @@
 	    				<p><img style="width:200px" src="assets/images/slider/{{ $slider->picture }}"></p>
 	    				@if(isset(Auth::user()->id))
 		    				<div class="slider-post-buttons">
-		    					<a href="sliders/edit/{{ $slider->id }}" class="btn btn-default">Edit</a>
-			    				{{ Form::open(array('route' => array('slider.delete', $slider->id), 'method' => 'delete')) }}
+		    					<a href="sliders/edit/{{ $slider->id }}" class="btn btn-default col-md-3">Edit</a>
+			    				{{ Form::open(array('route' => array('slider.delete', $slider->id), 'method' => 'delete', 'class' => 'col-md-3')) }}
 			    					{{ Form::submit('Delete', array('class' => 'btn btn-danger')); }}
 			    				{{ Form::close() }}
 			    			</div>

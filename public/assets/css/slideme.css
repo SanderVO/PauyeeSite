@@ -10,13 +10,13 @@
 .slideme_container ul,
 .slideme_container ol, 
 .slideme {
-    margin: 0;
+    /* margin: 0; */
     padding: 0;
 }
 
 .slideme_container li, 
 .slideme > li  {
-    display: block;
+    /* display: block; */
     list-style: none;
 }
 

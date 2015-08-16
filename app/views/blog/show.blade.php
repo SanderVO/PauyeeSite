@@ -13,7 +13,7 @@
 		</div>
 		<!-- blog text & reactions -->
 		<div class="blog-text col-md-12">
-			<div class="blog-desc">
+			<div class="blog-desc col-md-12">
 				<p><b>{{ $post->intro }}</b></p>
 			</div>
 			<div class="blog-blocks col-md-12">
