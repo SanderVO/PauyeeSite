@@ -43,7 +43,7 @@ class ContactController extends BaseController {
 	    	// send
 	        Mail::send('email.' . $view, $content, function($message)use($name, $email) {
 	        	$message->from($email, $name);
-	            $message->to('sander9003@hotmail.com', 'Pauyee Lim')->subject('Contactaanvraag');
+	            $message->to('pauyee@pauyeefitness.com', 'Pauyee Lim')->subject('Contactaanvraag');
 	        });
 			// return
 			return View::make('contact.contact')->with(array(

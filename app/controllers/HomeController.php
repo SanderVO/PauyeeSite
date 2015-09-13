@@ -20,20 +20,11 @@ class HomeController extends BaseController {
 		$pics = SliderPicture::orderBy('position', 'ASC')->get();
 		// get instagram pictures
 		$c = 0;
-		$insta = [];
-		$tmp = $this->getInstagramMedia();
-		foreach($tmp['data'] as $val) {
-			$insta[] = $val;
-			$c++;
-			if($c == 15)
-				break 1;
-		}
 		// about
 		$about = About::first();
 		// return
 		return View::make('home.home')->with(array(
 			'pictures' => $pics,
-			'instadata' => $insta,
 			'about' => $about
 		));
 	}

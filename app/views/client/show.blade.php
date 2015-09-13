@@ -32,7 +32,7 @@
 				<h3 class="neon">Reactions</h3>
 				@foreach($client->reactions as $react)
 				<div class="reaction">
-					<div class="reaction-name neon"><b>{{ $react->name }}</b></div>
+					<div class="reaction-name red"><b>{{ $react->name }}</b></div>
 					<div class="reaction-message">{{ $react->text }}</div>
 				</div>
 				@endforeach

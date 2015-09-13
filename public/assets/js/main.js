@@ -26,8 +26,8 @@ $(document).ready(function() {
 		CKEDITOR.replace('client-desc-editor');
 	if($('#client-text-editor').html() != undefined)
 		CKEDITOR.replace('client-text-editor');
-	if($('#edit-slider-description').html() != undefined)
-		CKEDITOR.replace('edit-slider-description');
+    if($('.home-insta-pics').html() != undefined)
+        getInstaPics();
 
     // init CK's
     if($(".client-blocks").html() != undefined) {
@@ -218,4 +218,32 @@ function showPosts(id) {
         $(id).next().css('height', 'auto');
     else
         $(id).next().css('height', '0px');
+}
+
+/**
+* Home
+**/
+function getInstaPics() {
+    // request
+    $.ajax({
+        url: 'https://api.instagram.com/v1/users/44021013/media/recent?client_id=9ebc396cee1b44aa8698ee87ae8067f7',
+        type: 'GET',
+        cache: false,
+        dataType: 'jsonp'
+    })
+    .done(function(data) {
+        console.log(data.data);
+        var appString = '';
+        for(var i = data.data.length - 1; i >= 0; i--) {
+            appString += ''+
+                '<div class="col-xs-6 col-sm-3 col-md-2 home-instagram-pic">'+
+                    '<a href="'+data.data[i]["link"]+'"><img src="'+data.data[i]["images"]["thumbnail"]["url"]+'"></a>'+
+                '</div>'+
+            '';
+        };
+        $('.home-insta-pics').fadeIn().html(appString);
+    })
+    .fail(function() {
+        console.log("error");
+    });      
 }

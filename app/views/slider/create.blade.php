@@ -20,7 +20,7 @@
 			    </div>
 			    <div class="form-group">
 			    	{{ Form::label('description', 'Description'); }}
-			    	{{ Form::textarea('description', $slider->description, array('class' => 'form-control', 'id' => 'edit-slider-description')); }}
+			    	{{ Form::textarea('description', $slider->description, array('class' => 'form-control'); }}
 			    	@if(isset($errors)) {{ $errors->first('description'); }} @endif
 			    </div>
 			    <div class="form-group">

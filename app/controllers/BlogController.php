@@ -15,6 +15,7 @@ class BlogController extends BaseController {
 		$query = BlogPost::orderBy('created_at', 'DESC')->with('reactions', 'user', 'blocks');
 		$blogs = $query->take(15)->get();
 		$dates = $query->orderBy('created_at', 'DESC')->get(['created_at', 'title', 'id']);
+		$sdates = [];
 		// sort dates
 		foreach($dates as $date)
 			$sdates[date('Y', strtotime($date->created_at))][date('F', strtotime($date->created_at))][] = $date;

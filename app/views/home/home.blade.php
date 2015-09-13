@@ -4,6 +4,7 @@
 	<div class="home">
 
 		<div id="home-slider" class="carousel slide maxvh" data-ride="carousel">
+			@if(sizeof($pictures) > 0)
 			<!-- Indicators -->
 			<ol class="carousel-indicators">
 				@foreach($pictures as $key => $picture)
@@ -42,14 +43,17 @@
 				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 				<span class="sr-only">Next</span>
 			</a>
+			@endif
 		</div>
 
 		<div class="home-about">
 			<div class="container">
 				<div class="col-md-12 mrgntop-col">
 					<h2>About <span class="neon">Me</span></h2>
+					@if(isset($about))
 					<div class="col-md-12 mrgntop-col mrgnbtn"><img class="rounded-pic" src="{{ $about->picture }}" /></div>
 					<p>{{ $about->text }}</p>
+					@endif
 				</div>
 			</div>
 		</div>
@@ -58,13 +62,7 @@
 			<div class="container">
 				<div>
 					<h2>Insta<span class="neon">gram</span></h2>
-					<div class="home-insta-pics col-md-offset-1 mrgntop-col">
-					@foreach($instadata as $data)
-						<div class="home-instagram-pic">
-							<a href="{{ $data['link'] }}"><img src="{{ $data['images']['thumbnail']['url'] }}"></a>
-						</div>
-					@endforeach
-					</div>
+					<div class="home-insta-pics col-xs-12 col-sm-12 col-md-12 mrgntop-col"></div>
 				</div>
 			</div>
 		</div>

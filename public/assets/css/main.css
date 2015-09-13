@@ -16,6 +16,9 @@ body .body {
 body .txt-subt {
   font-size: 15pt;
 }
+body .red {
+  color: #AD4949;
+}
 
 /** 
 * Carousel
@@ -56,7 +59,7 @@ nav.small {
   bottom: 190px;  
 }
 .navbar-toggle {
-  background-color: white;
+  background-color: #272727;
   border: none;
 }
 .navbar-collapse {
@@ -84,6 +87,24 @@ nav.small {
 }
 .navbar.footer {
   border: none;
+}
+.navbar-default .navbar-toggle {
+  background-color: #2CD1C1;
+}
+.navbar-default .navbar-toggle:hover {
+  background-color: #2CD1C1;
+}
+.navbar-default .navbar-toggle:active {
+  background-color: #2CD1C1;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: white;
+}
+.navbar-default .navbar-text {
+  text-align: center;
+}
+body .navbar-nav {
+  background-color: #282B3C;
 }
 
 body {
@@ -256,15 +277,12 @@ nav .social-links a {
   margin: 60px 0px;
 }
 .home-instagram-pic {
-  float: left;
-  margin-right: 10px;
-  margin-left: 20px;
   margin-bottom: 10px;
 }
 .home-about,
 .home-instagram {
-  margin-top: 25vh;
-  margin-bottom: 25vh;
+  margin-top: 5vh;
+  /* margin-bottom: 0vh; */
 }
 .home-about div > div,
 .home-about div p {
@@ -286,6 +304,14 @@ nav .social-links a {
   font-size: 25pt;
   top: 100px;
   z-index: 10;
+}
+@media(max-width: 470px) {
+  body .slider-text {
+    font-size: 15pt;
+  }
+  body .txt-subt {
+    font-size: 10pt;
+  }
 }
 
 /**
@@ -317,7 +343,7 @@ nav .social-links a {
 * Clients
 **/
 .client {
-  box-shadow: 0px 3px 15px #888888;
+  box-shadow: 0px 3px 15px #000000;
   min-height: 500px;
   max-height: 500px;
   margin: 20px 0px;

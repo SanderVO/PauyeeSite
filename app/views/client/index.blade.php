@@ -3,14 +3,14 @@
 @section('content')
 	<div class="clients-page container">
 		<!-- Searchbar -->
-		<div class="col-md-12">
+{{-- 		<div class="col-md-12">
 		    <div class="input-group">
 		     	<span class="input-group-btn">
 		        	<button onclick="searchClients();" class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
 		     	</span>
 				<input id="search-client-text" type="text" class="form-control" placeholder="Zoeken..">
 			</div>
-		</div>
+		</div> --}}
 		<!-- Buttons -->
 		@if(isset(Auth::user()->id))
 			<div class="client-buttons">

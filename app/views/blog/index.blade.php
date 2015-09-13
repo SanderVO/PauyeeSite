@@ -36,7 +36,7 @@
 			<h1 class="neon">Archive</h1>
     		@foreach($dates as $key => $date)
 				<div class="blog-year">
-					<h3>{{ $key }}</h2>
+					<h3 class="red">{{ $key }}</h2>
 					@foreach($date as $key2 => $month)
 						<div class="blog-month">
 							<h4 class="neon" onclick="showPosts(this)">{{ $key2 }}</h3>

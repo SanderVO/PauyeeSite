@@ -3,13 +3,21 @@
         Options -MultiViews
     </IfModule>
 
+    Header set Cache-Control "max-age=290304000, public"
+
     RewriteEngine On
+
+    RewriteBase /
+
+    # Ignore these folders
+    RewriteRule ^(files) - [L]
 
     # Redirect Trailing Slashes...
     RewriteRule ^(.*)/$ /$1 [L,R=301]
 
-    # Handle Front Controller...
+    # Handle Front Controller..
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ index.php [L]
+    # RewriteRule ^ index.php [L]
+    RewriteRule ^(.+)$ /index.php [L]
 </IfModule>
