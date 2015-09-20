@@ -32,7 +32,7 @@ $(document).ready(function() {
     // init CK's
     if($(".client-blocks").html() != undefined) {
         var count = $(".client-blocks textarea").length;
-        for(var i=1;i<=count;i++)
+        for(var i=0;i<=count;i++)
             CKEDITOR.replace("block[" + i + "][\'text\']");
     }
     if($(".blog-blocks").html() != undefined) {

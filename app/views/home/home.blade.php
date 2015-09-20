@@ -49,10 +49,9 @@
 		<div class="home-about">
 			<div class="container">
 				<div class="col-md-12 mrgntop-col">
-					<h2>About <span class="neon">Me</span></h2>
 					@if(isset($about))
-					<div class="col-md-12 mrgntop-col mrgnbtn"><img class="rounded-pic" src="{{ $about->picture }}" /></div>
-					<p>{{ $about->text }}</p>
+						<div class="col-md-12 mrgntop-col mrgnbtn"><img class="rounded-pic" src="assets/images/about/{{ $about->picture }}" /></div>
+						<p>{{ $about->text }}</p>
 					@endif
 				</div>
 			</div>

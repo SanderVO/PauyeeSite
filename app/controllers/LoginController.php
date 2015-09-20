@@ -29,7 +29,7 @@ class LoginController extends BaseController {
             if(Auth::validate($userdata)) {
 				// remove validation because ardent
 	            User::$rules = array();
-	            $result = Auth::attempt(array('email' => $userdata['email'], 'password' => $userdata['password']), false);
+	            $result = Auth::attempt(array('email' => $userdata['email'], 'password' => $userdata['password']), true);
 	            // check
 	            if($result) {
 	            	// user logged in

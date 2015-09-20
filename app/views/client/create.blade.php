@@ -8,9 +8,9 @@
 				<div class="message">{{ $message }}</div>
 			@endif
 	    	{{ Form::model($client, array('id' => 'client-form', 'url' => $url, 'files' => true, 'class' => 'col-md-8 col-md-offset-2', 'method' => $method)) }}
-			    <div class="form-group">
+			    <div class="form-group addpic">
 			    	{{ Form::label('picture', 'Picture'); }}
-			    	<img class='col-md-4 blocks-pic' src='#' id='client-pic' />
+			    	<img class='col-md-4 blocks-pic' src='assets/images/client/{{ $client->picture }}' id='client-pic' />
 			    	{{ Form::file('picture'); }}
 			    	@if(isset($errors)) {{ $errors->first('picture'); }} @endif
 			    </div>

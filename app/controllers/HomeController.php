@@ -22,6 +22,12 @@ class HomeController extends BaseController {
 		$c = 0;
 		// about
 		$about = About::first();
+		$tmpar = explode(". ", $about->text);
+		$about->text = "";
+		for($i=0;$i<4;$i++) {
+			if(isset($tmpar[$i]))
+				$about->text .= $tmpar[$i] . ". ";
+		}
 		// return
 		return View::make('home.home')->with(array(
 			'pictures' => $pics,
