@@ -2,6 +2,7 @@
 /vendor
 /node_modules
 /public/assets/images/
+/app/config
 composer.phar
 composer.lock
 .env.*.php
