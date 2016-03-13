@@ -45,23 +45,46 @@
 			</a>
 			@endif
 		</div>
-
-		<div class="home-about">
+		
+		@if(isset($about))
+		<div class="home-block home-about">
 			<div class="container">
 				<div class="col-md-12 mrgntop-col">
-					@if(isset($about))
-						<div class="col-md-12 mrgntop-col mrgnbtn"><img class="rounded-pic" src="assets/images/about/{{ $about->picture }}" /></div>
+					<div class="col-md-6 mrgntop-col mrgnbtn"><img class="rounded-pic" src="assets/images/about/{{ $about->picture }}" /></div>
+					<div class="col-md-6 mrgntop-col mrgnbtn">
+						<h2>About <span class="neon">Me</span></h2>
 						<p>{{ $about->text }}</p>
-					@endif
+					</div>
 				</div>
 			</div>
 		</div>
+		@endif
 
-		<div class="home-instagram minvh">
+		<div class="home-block home-instagram minvh">
 			<div class="container">
 				<div>
 					<h2>Insta<span class="neon">gram</span></h2>
 					<div class="home-insta-pics col-xs-12 col-sm-12 col-md-12 mrgntop-col"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="home-block home-videos minvh">
+			<div class="container">
+				<h2 class="neon center">Videos</h2>
+				<div class="videos">
+					@foreach($youtubedata['items'] as $data)
+						<div class="home-youtube-video col-md-6">
+							<div class="col-md-12">
+								@if(isset($data['id']['videoId']))
+									<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{ $data['id']['videoId'] }}" allowfullscreen></iframe>
+								@endif
+							</div>
+							<div class="col-md-12">
+								<h3 class="neon">{{ $data['snippet']['title'] }}</h3>
+							</div>
+						</div>
+					@endforeach
 				</div>
 			</div>
 		</div>

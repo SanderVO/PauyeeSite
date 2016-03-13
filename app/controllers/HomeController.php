@@ -20,6 +20,9 @@ class HomeController extends BaseController {
 		$pics = SliderPicture::orderBy('position', 'ASC')->get();
 		// get instagram pictures
 		$c = 0;
+		// get videos
+		$videos = Video::orderBy('created_at', 'DESC')->get();
+		$youtube = $this->getYoutubeMedia(4);
 		// about
 		$about = About::first();
 		$tmpar = explode(". ", $about->text);
@@ -31,7 +34,9 @@ class HomeController extends BaseController {
 		// return
 		return View::make('home.home')->with(array(
 			'pictures' => $pics,
-			'about' => $about
+			'about' => $about,
+			'videos' => $videos,
+			'youtubedata' => $youtube
 		));
 	}
 

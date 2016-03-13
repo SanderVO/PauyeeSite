@@ -39,7 +39,6 @@
 	        			<li><a href="about" class="navbar-link">About Me</a></li>
 	        			<li><a href="clients" class="navbar-link">Clients</a></li>
 	        			<li><a href="blog" class="navbar-link">Blog</a></li>
-	        			<li><a href="videos" class="navbar-link">Videos</a></li>
 						@if(isset(Auth::user()->id))
 							<li><a href="sliders" class="navbar-link">Sliders</a></li>
 						@endif

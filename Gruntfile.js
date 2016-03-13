@@ -31,7 +31,7 @@ module.exports = function(grunt) {
 			    sourcemap: true,
 			  },
 			  files: {                  
-			    'public/assets/css/main.css': 'public/assets/scss/main.scss'
+			    'public/assets/css/main.css': 'components/css/main.scss'
 			  }
 			}
 		},
@@ -59,7 +59,7 @@ module.exports = function(grunt) {
 		// watcher
 		watch: {
 			css: {
-				files: ['public/assets/scss/*.scss'],
+				files: ['components/css/*.scss'],
 				tasks: ['sass', 'cssmin'],
 				options: {
 					spawn: false

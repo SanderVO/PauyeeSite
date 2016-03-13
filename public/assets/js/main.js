@@ -234,10 +234,10 @@ function getInstaPics() {
     .done(function(data) {
         console.log(data.data);
         var appString = '';
-        for(var i = data.data.length - 1; i >= 0; i--) {
+        for(var i = 5; i >= 0; i--) {
             appString += ''+
-                '<div class="col-xs-6 col-sm-3 col-md-2 home-instagram-pic">'+
-                    '<a href="'+data.data[i]["link"]+'"><img src="'+data.data[i]["images"]["thumbnail"]["url"]+'"></a>'+
+                '<div class="col-xs-6 col-sm-6 col-md-4 col-lg-4 home-instagram-pic">'+
+                    '<a href="'+data.data[i]["link"]+'"><img src="'+data.data[i]["images"]["low_resolution"]["url"]+'"></a>'+
                 '</div>'+
             '';
         };
